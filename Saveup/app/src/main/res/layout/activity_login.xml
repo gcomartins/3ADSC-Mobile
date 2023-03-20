@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:outlineAmbientShadowColor="@color/transparent"
+        android:outlineSpotShadowColor="@color/transparent"
+        >
+
+        <include layout="@layout/app_bar_onboarding"/>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entre com"
+            android:textAlignment="center"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/face_logo_inactived"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/google_plus_logo_active"
+                android:layout_marginHorizontal="16dp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/linkedin_logo_inactived"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ou use seu email"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:text="Email"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite aqui o seu email"
+            android:backgroundTint="#E9F1E7"
+            android:background="#E9F1E7"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="8dp"
+            android:textColorHint="@color/grey"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/primary"
+            android:text="Senha"
+            />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite aqui a sua senha"
+            android:backgroundTint="#E9F1E7"
+            android:background="#E9F1E7"
+            android:paddingVertical="16dp"
+            android:paddingHorizontal="8dp"
+            android:textColorHint="@color/grey"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entrar"
+            android:textSize="12dp"
+            android:backgroundTint="@color/primary"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cadastrar-se"
+            android:textColor="@color/primary"
+            android:backgroundTint="@color/transparent"
+            android:shadowColor="@color/transparent"
+            android:outlineSpotShadowColor="@color/transparent"
+            android:textSize="12dp"
+            android:outlineProvider="background"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Esqueci minha senha"
+            android:textSize="8dp"
+            android:textColor="@color/primary"
+            android:backgroundTint="@color/transparent"
+            android:shadowColor="@color/transparent"
+            android:outlineSpotShadowColor="@color/transparent"
+            android:lineHeight="1dp"
+            android:outlineProvider="background"
+            />
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

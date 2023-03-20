@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="cinza">#E9F1E7</color>
     <color name="ver_nav"> #6DA160 </color>
+    <color name="primary">#6DA160</color>
+    <color name="transparent">#00000000</color>
+    <color name="grey">#818181</color>
 </resources>
