@@ -21,154 +21,231 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:paddingHorizontal="16dp"
-        >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Entre com"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="16dp"
-            >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/face_logo_inactived"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/google_plus_logo_active"
-                android:layout_marginHorizontal="16dp"
-                />
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/linkedin_logo_inactived"/>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ou use seu email"
-            android:textAlignment="center"
-            android:layout_gravity="center"
-            />
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="vertical"
-            android:layout_marginVertical="40dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/primary"
-                android:text="Email"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Digite aqui o seu email"
-                android:backgroundTint="#E9F1E7"
-                android:background="#E9F1E7"
-                android:paddingVertical="16dp"
-                android:paddingHorizontal="8dp"
-                android:textColorHint="@color/grey"
-                />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20dp"
-                android:textStyle="bold"
-                android:textColor="@color/primary"
-                android:text="Senha"
-                android:layout_marginTop="16dp"
-                />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Digite aqui a sua senha"
-                android:backgroundTint="#E9F1E7"
-                android:background="#E9F1E7"
-                android:paddingVertical="16dp"
-                android:paddingHorizontal="8dp"
-                android:textColorHint="@color/grey"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="120dp"
+            android:paddingBottom="40dp"
             >
 
-            <Button
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entrar"
-                android:textSize="12dp"
-                android:backgroundTint="@color/primary"
+                android:text="Entre com"
+                android:layout_gravity="center"
+                android:textAlignment="center"
                 />
 
-            <Button
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastrar-se"
-                android:textColor="@color/primary"
-                android:backgroundTint="@color/transparent"
-                android:shadowColor="@color/transparent"
-                android:outlineSpotShadowColor="@color/transparent"
-                android:textSize="12dp"
-                android:outlineProvider="background"
+                android:layout_gravity="center"
                 android:layout_marginVertical="16dp"
-                android:background="@drawable/button"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/face_logo_inactived"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/google_plus_logo_active"
+                    android:layout_marginHorizontal="16dp"
+                    />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/linkedin_logo_inactived"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ou use seu email"
+                android:textAlignment="center"
+                android:layout_gravity="center"
                 />
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Esqueci minha senha"
-                android:textSize="8dp"
-                android:textColor="@color/primary"
-                android:backgroundTint="@color/transparent"
-                android:shadowColor="@color/transparent"
-                android:outlineSpotShadowColor="@color/transparent"
-                android:lineHeight="1dp"
-                android:outlineProvider="background"
-                />
+                android:orientation="vertical"
+                android:layout_marginVertical="40dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="Nome"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite aqui o seu nome"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="CPF"
+                    android:layout_marginTop="16dp"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite aqui o seu CPF"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="Data de Nascimento"
+                    android:layout_marginTop="16dp"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite aqui o dia do seu nascimento"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="Email"
+                    android:layout_marginTop="16dp"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite aqui o seu email"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="Senha"
+                    android:layout_marginTop="16dp"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite aqui a sua senha"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="Confirmacao de Senha"
+                    android:layout_marginTop="16dp"
+                    />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Digite a sua senha novamente"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cadastrar-se"
+                    android:textSize="12dp"
+                    android:backgroundTint="@color/primary"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Entrar"
+                    android:textColor="@color/primary"
+                    android:backgroundTint="@color/transparent"
+                    android:shadowColor="@color/transparent"
+                    android:outlineSpotShadowColor="@color/transparent"
+                    android:textSize="12dp"
+                    android:outlineProvider="background"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/button"
+                    />
+
+            </LinearLayout>
+
+
+
+
+
+
+
 
         </LinearLayout>
 
+    </ScrollView>
 
 
-
-
-
-
-
-    </LinearLayout>
 
 </RelativeLayout>
