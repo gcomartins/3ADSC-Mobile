@@ -7,9 +7,9 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="cinza">#E9F1E7</color>
     <color name="ver_nav"> #6DA160 </color>
     <color name="primary">#6DA160</color>
     <color name="transparent">#00000000</color>
     <color name="grey">#818181</color>
+    <color name="red">#E84F47</color>
 </resources>
