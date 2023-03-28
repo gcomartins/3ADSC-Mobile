@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_bar_meus_dados" />
+
+
+    <LinearLayout
+        android:layout_width="250dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPerfil"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="25dp"
+            android:src="@drawable/account_circle" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:text="@string/senha_antiga"
+            android:textColor="@color/primary"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/titulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/input_shape"
+            android:backgroundTint="#E9F1E7"
+            android:paddingHorizontal="7dp"
+            android:paddingVertical="8dp"
+            android:textColorHint="@color/grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/nova_senha"
+            android:textColor="@color/primary"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/descricao"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/input_shape"
+            android:backgroundTint="#E9F1E7"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="8dp"
+            android:textColorHint="@color/grey" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/confirmacao_senha"
+            android:textColor="@color/primary"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/categoria"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/input_shape"
+            android:backgroundTint="#E9F1E7"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="8dp"
+            android:textColorHint="@color/grey" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="20sp"
+        android:layout_marginEnd="20sp"
+        android:orientation="vertical">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:text="@string/salvar_alteracoes"
+            android:textSize="12dp" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="@string/cancelar"
+            android:textColor="@color/primary"
+            android:textSize="12dp" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

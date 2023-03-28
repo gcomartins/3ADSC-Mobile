@@ -18,4 +18,11 @@
     <string name="adicionar_receita">Adicionar Receita</string>
     <string name="cancelar">Cancelar</string>
     <string name="adicionar_gasto">Adicionar gasto</string>
+    <string name="save_up">Save Up</string>
+    <string name="entrar">Entrar</string>
+    <string name="meus_dados">Meus Dados</string>
+    <string name="senha_antiga">Senha Antiga</string>
+    <string name="nova_senha">Nova Senha</string>
+    <string name="confirmacao_senha">Confirmação de Senha</string>
+    <string name="salvar_alteracoes">Salvar Alterações</string>
 </resources>
