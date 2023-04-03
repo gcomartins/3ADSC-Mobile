@@ -25,4 +25,16 @@
     <string name="nova_senha">Nova Senha</string>
     <string name="confirmacao_senha">Confirmação de Senha</string>
     <string name="salvar_alteracoes">Salvar Alterações</string>
+    <string name="nomeusuario">Shrek</string>
+    <string name="resumo">Resumo</string>
+    <string name="resumo_descricao">Toda a sua vida financeira em uma página</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="resumo_dashboard">Acompanhe suas finanças com gráficos incríveis</string>
+    <string name="objetivos">Objetivos</string>
+    <string name="resumo_objetivo">Acompanhe a trajetória dos seus objetivos</string>
+    <string name="ajuda">Ajuda</string>
+    <string name="ajuda_resumo">Fale com um dos nossos atendentes</string>
+    <string name="reportar_bug">Reportar Bug</string>
+    <string name="Resumo_bug">Nos ajude a melhorar nos informando</string>
+    <string name="sair">Sair</string>
 </resources>
