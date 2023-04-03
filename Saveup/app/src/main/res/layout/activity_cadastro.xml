@@ -133,6 +133,7 @@
                     android:layout_marginTop="16dp"
                     />
                 <EditText
+                    android:inputType="datetime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Digite aqui o dia do seu nascimento"
@@ -173,6 +174,7 @@
                     android:layout_marginTop="16dp"
                     />
                 <EditText
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Digite aqui a sua senha"
@@ -193,6 +195,7 @@
                     android:layout_marginTop="16dp"
                     />
                 <EditText
+                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Digite a sua senha novamente"
