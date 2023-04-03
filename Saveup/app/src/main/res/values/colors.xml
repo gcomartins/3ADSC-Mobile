@@ -12,4 +12,5 @@
     <color name="transparent">#00000000</color>
     <color name="grey">#818181</color>
     <color name="red">#E84F47</color>
+    <color name="verde_grafico_inline">#6DA160</color>
 </resources>
