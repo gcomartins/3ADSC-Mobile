@@ -7,6 +7,7 @@ import androidx.navigation.Navigator
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_nova_senha)
+        supportActionBar?.hide();
     }
 }
