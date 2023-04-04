@@ -20,6 +20,20 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".NovaSenha"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".TelaInicial"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Cadastro"
             android:exported="false" >
             <meta-data
