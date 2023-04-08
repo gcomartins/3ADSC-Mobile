@@ -58,5 +58,8 @@
     <string name="policyTerms">Eu aceito os Termos de Politica e Privacidade</string>
     <string name="signUpButtonLabel">Cadastrar-se</string>
     <string name="signInButtonLabel">Entrar</string>
+    <string name="SignInWith">Entre com</string>
+    <string name="orUseYourEmail">ou use seu email</string>
+    <string name="forgetMyPassword">Esqueci minha senha</string>
 
 </resources>
