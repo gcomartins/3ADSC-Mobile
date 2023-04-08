@@ -37,4 +37,11 @@
     <string name="reportar_bug">Reportar Bug</string>
     <string name="Resumo_bug">Nos ajude a melhorar nos informando</string>
     <string name="sair">Sair</string>
+
+    <string name="sem_gastos_texto_destaque">Você não possui dados</string>
+    <string name="emoji_gastos">;(</string>
+    <string name="sem_gastos_texto_detalhe">Adicione novos Gastos para ter acesso aos nossos gráficos.</string>
+    <string name="btn_adicionar_gastos">Adicionar</string>
+    <string name="navegar_outras_telas_gastos">ou navegue para outras telas do nosso app</string>
+
 </resources>

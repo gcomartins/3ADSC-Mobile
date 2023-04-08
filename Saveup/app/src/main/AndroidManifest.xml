@@ -15,6 +15,20 @@
         android:theme="@style/Theme.SaveUp"
         tools:targetApi="31">
         <activity
+            android:name=".SemGastos"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".DashboardResumo"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".NovaSenha"
             android:exported="false">
             <meta-data
