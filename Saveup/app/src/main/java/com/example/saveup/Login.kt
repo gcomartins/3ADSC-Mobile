@@ -10,19 +10,20 @@ class Login : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-//        findViewById<Button>(R.id.btSignIn).setOnClickListener {
-//            goToHomePage()
-//        }
+        supportActionBar?.hide()
+        findViewById<Button>(R.id.btSignIn).setOnClickListener {
+            goToHomePage()
+        }
 
         findViewById<Button>(R.id.btSignUp).setOnClickListener {
             GoToSignUpPage()
         }
     }
 
-//    private fun goToHomePage() {
-//        val homePage = Intent(this, HomePage::class.java)
-//        startActivity(homePage)
-//    }
+    private fun goToHomePage() {
+        val homePage = Intent(this, SemGastos::class.java)
+        startActivity(homePage)
+    }
 
      private fun GoToSignUpPage() {
         val signUpPage = Intent(this, Cadastro::class.java)
