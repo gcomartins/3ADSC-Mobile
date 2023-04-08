@@ -43,5 +43,20 @@
     <string name="sem_gastos_texto_detalhe">Adicione novos Gastos para ter acesso aos nossos gráficos.</string>
     <string name="btn_adicionar_gastos">Adicionar</string>
     <string name="navegar_outras_telas_gastos">ou navegue para outras telas do nosso app</string>
+    <string name="nameLabel">Nome</string>
+    <string name="nameHint">Digite aqui o seu nome</string>
+    <string name="cpfLabel">CPF</string>
+    <string name="cpfHint">Digite aqui o seu CPF</string>
+    <string name="birthLabel">Data de Nascimento</string>
+    <string name="birthHint">Digite aqui o dia do seu nascimento</string>
+    <string name="emailLabel">Email</string>
+    <string name="emailHint">Digite aqui o seu email</string>
+    <string name="passwordLabel">Senha</string>
+    <string name="passwordHint">Digite aqui a sua senha</string>
+    <string name="confirmPasswordLabel">Confirmacao de Senha</string>
+    <string name="confirmPasswordHint">Digite a sua senha novamente</string>
+    <string name="policyTerms">Eu aceito os Termos de Politica e Privacidade</string>
+    <string name="signUpButtonLabel">Cadastrar-se</string>
+    <string name="signInButtonLabel">Entrar</string>
 
 </resources>

@@ -90,12 +90,12 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
-                    android:text="Nome"
+                    android:text="@string/nameLabel"
                     />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Digite aqui o seu nome"
+                    android:hint="@string/nameHint"
                     android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
                     android:paddingVertical="16dp"
@@ -109,13 +109,13 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
-                    android:text="CPF"
+                    android:text="@string/cpfLabel"
                     android:layout_marginTop="16dp"
                     />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Digite aqui o seu CPF"
+                    android:hint="@string/cpfHint"
                     android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
                     android:paddingVertical="16dp"
@@ -129,14 +129,14 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
-                    android:text="Data de Nascimento"
+                    android:text="@string/birthLabel"
                     android:layout_marginTop="16dp"
                     />
                 <EditText
                     android:inputType="datetime"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Digite aqui o dia do seu nascimento"
+                    android:hint="@string/birthHint"
                     android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
                     android:paddingVertical="16dp"
@@ -150,13 +150,13 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
-                    android:text="Email"
+                    android:text="@string/emailLabel"
                     android:layout_marginTop="16dp"
                     />
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Digite aqui o seu email"
+                    android:hint="@string/emailHint"
                     android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
                     android:paddingVertical="16dp"
@@ -170,35 +170,35 @@
                     android:textSize="20dp"
                     android:textStyle="bold"
                     android:textColor="@color/primary"
-                    android:text="Senha"
-                    android:layout_marginTop="16dp"
-                    />
-                <EditText
-                    android:inputType="textPassword"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Digite aqui a sua senha"
-                    android:backgroundTint="#E9F1E7"
-                    android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
-                    android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
-                    android:text="Confirmacao de Senha"
+                    android:text="@string/passwordLabel"
                     android:layout_marginTop="16dp"
                     />
                 <EditText
                     android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Digite a sua senha novamente"
+                    android:hint="@string/passwordHint"
+                    android:backgroundTint="#E9F1E7"
+                    android:background="#E9F1E7"
+                    android:paddingVertical="16dp"
+                    android:paddingHorizontal="8dp"
+                    android:textColorHint="@color/grey"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary"
+                    android:text="@string/confirmPasswordLabel"
+                    android:layout_marginTop="16dp"
+                    />
+                <EditText
+                    android:inputType="textPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/confirmPasswordHint"
                     android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
                     android:paddingVertical="16dp"
@@ -225,7 +225,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Eu aceito os Termos de Politica e Privacidade"
+                        android:text="@string/policyTerms"
                         />
 
                 </LinearLayout>
@@ -233,7 +233,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Cadastrar-se"
+                    android:text="@string/signUpButtonLabel"
                     android:textSize="12dp"
                     android:backgroundTint="@color/primary"
                     />
@@ -242,7 +242,7 @@
                     android:id="@+id/btSignIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Entrar"
+                    android:text="@string/signInButtonLabel"
                     android:textColor="@color/primary"
                     android:backgroundTint="@color/transparent"
                     android:shadowColor="@color/transparent"
