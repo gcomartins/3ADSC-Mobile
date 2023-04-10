@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Save up</string>
+    <string name="nameLabel">Name</string>
+    <string name="nameHint">Enter your name here</string>
+    <string name="cpfHint">Enter here your CPF</string>
+    <string name="birthLabel">Birthdate</string>
+    <string name="birthHint">Enter here your birthdate</string>
+    <string name="emailHint">Enter here your email</string>
+    <string name="passwordLabel">Password</string>
+    <string name="passwordHint">Enter here your password</string>
+    <string name="confirmPasswordLabel">Confirm your password</string>
+    <string name="confirmPasswordHint">Enter here your password confirmation</string>
+    <string name="policyTerms">I accept the Terms of Policy and Privacy</string>
+    <string name="signUpButtonLabel">Sign Up</string>
+    <string name="signInButtonLabel">Sign In</string>
+    <string name="SignInWith">Sign In with</string>
+    <string name="orUseYourEmail">or use your email</string>
+    <string name="forgetMyPassword">Forget my password</string>
+</resources>

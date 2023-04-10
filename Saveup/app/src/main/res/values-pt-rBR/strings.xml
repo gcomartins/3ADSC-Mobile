@@ -1,15 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name" translatable="false">Save up</string>
     <string name="novo_gasto">Novo gasto</string>
-    <string name="title_activity_login">Login</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label" translatable="false">First Fragment</string>
-    <string name="second_fragment_label" translatable="false">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment" translatable="false">Hello first fragment</string>
-    <string name="hello_second_fragment" translatable="false">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_login">Entrar</string>
+    <string name="next">Proximo</string>
+    <string name="previous">Anterior</string>
     <string name="nova_receita">Nova Receita</string>
     <string name="titulo">Título</string>
     <string name="descricao">Descrição</string>
@@ -25,7 +19,6 @@
     <string name="nova_senha">Nova Senha</string>
     <string name="confirmacao_senha">Confirmação de Senha</string>
     <string name="salvar_alteracoes">Salvar Alterações</string>
-    <string name="nomeusuario" translatable="false">Shrek</string>
     <string name="resumo">Resumo</string>
     <string name="resumo_descricao">Toda a sua vida financeira em uma página</string>
     <string name="dashboard">Dashboard</string>
@@ -37,19 +30,15 @@
     <string name="reportar_bug">Reportar Bug</string>
     <string name="Resumo_bug">Nos ajude a melhorar nos informando</string>
     <string name="sair">Sair</string>
-
     <string name="sem_gastos_texto_destaque">Você não possui dados</string>
-    <string name="emoji_gastos" translatable="false">;(</string>
     <string name="sem_gastos_texto_detalhe">Adicione novos Gastos para ter acesso aos nossos gráficos.</string>
     <string name="btn_adicionar_gastos">Adicionar</string>
     <string name="navegar_outras_telas_gastos">ou navegue para outras telas do nosso app</string>
     <string name="nameLabel">Nome</string>
     <string name="nameHint">Digite aqui o seu nome</string>
-    <string name="cpfLabel" translatable="false">CPF</string>
     <string name="cpfHint">Digite aqui o seu CPF</string>
     <string name="birthLabel">Data de Nascimento</string>
     <string name="birthHint">Digite aqui o dia do seu nascimento</string>
-    <string name="emailLabel" translatable="false">Email</string>
     <string name="emailHint">Digite aqui o seu email</string>
     <string name="passwordLabel">Senha</string>
     <string name="passwordHint">Digite aqui a sua senha</string>
@@ -61,5 +50,4 @@
     <string name="SignInWith">Entre com</string>
     <string name="orUseYourEmail">ou use seu email</string>
     <string name="forgetMyPassword">Esqueci minha senha</string>
-
 </resources>
