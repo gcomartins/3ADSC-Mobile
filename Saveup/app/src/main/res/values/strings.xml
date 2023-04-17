@@ -62,4 +62,5 @@
     <string name="orUseYourEmail">ou use seu email</string>
     <string name="forgetMyPassword">Esqueci minha senha</string>
 
+    <string name="app_bar_resumo" translatable="false">Resumo</string>
 </resources>
