@@ -7,6 +7,10 @@ android {
     namespace 'com.example.saveup'
     compileSdk 33
 
+    viewBinding {
+        enabled = true
+    }
+
     defaultConfig {
         applicationId "com.example.saveup"
         minSdk 23
@@ -49,6 +53,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.+'
 }

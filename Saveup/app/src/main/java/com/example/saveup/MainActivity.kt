@@ -5,14 +5,19 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.navigation.Navigator
+import com.example.saveup.databinding.ActivityTelaInicialBinding
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityTelaInicialBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tela_inicial)
+        binding = ActivityTelaInicialBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
 
-        findViewById<Button>(R.id.btSignUp).setOnClickListener {
+        binding.btSignUp.setOnClickListener {
             GoToSignUpPage()
         }
     }
