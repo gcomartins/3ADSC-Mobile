@@ -4,7 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.navigation.Navigator
+//import androidx.navigation.Navigator
 import com.example.saveup.databinding.ActivityTelaInicialBinding
 
 class MainActivity : AppCompatActivity() {
