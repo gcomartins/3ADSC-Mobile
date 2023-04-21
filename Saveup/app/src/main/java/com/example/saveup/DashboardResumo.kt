@@ -30,7 +30,7 @@ class DashboardResumo : AppCompatActivity() {
             entries.add(Entry(dinheiroGuardadoNoMes.mes.toFloat(), dinheiroGuardadoNoMes.valor.toFloat()))
         }
 
-        dataSet = LineDataSet(entries, "Valor guardado por mês")
+        dataSet = LineDataSet(entries, "")
 
         lineData = LineData(dataSet)
         R.layout.activity_dashboard_resumo
@@ -40,7 +40,7 @@ class DashboardResumo : AppCompatActivity() {
 
         line_chart.data = lineData
         dataSet.color = verde_bolinha_grafico
-        dataSet.valueTextColor = Color.CYAN
+        dataSet.valueTextColor = Color.BLACK
         dataSet.valueTextSize = 15f
         dataSet.setDrawFilled(true)
         dataSet.fillColor = Color.parseColor("#4CAF50") // verde claro
@@ -53,7 +53,7 @@ class DashboardResumo : AppCompatActivity() {
 
         line_chart.legend.setDrawInside(false)
         line_chart.legend.textColor = Color.GREEN
-        line_chart.legend.form = Legend.LegendForm.CIRCLE
+        line_chart.legend.form = Legend.LegendForm.NONE
 
         line_chart.apply {
             setNoDataText("Nenhum dado disponível no momento")//msg exibida quando não há dados
@@ -78,9 +78,8 @@ class DashboardResumo : AppCompatActivity() {
         xAxis.setDrawGridLines(false)
         xAxis.setDrawAxisLine(false)
         xAxis.position = XAxis.XAxisPosition.BOTTOM
-//        xAxis.granularity = 0f
         xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
-        xAxis.textColor = Color.CYAN
+        xAxis.textColor = Color.BLACK
         xAxis.textSize = 10F
 
     }
