@@ -32,207 +32,195 @@
             android:orientation="vertical"
             android:paddingHorizontal="16dp"
             android:paddingTop="120dp"
-            android:paddingBottom="40dp"
-            >
+            android:paddingBottom="40dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Entre com"
                 android:layout_gravity="center"
-                android:textAlignment="center"
-                />
+                android:text="Entre com"
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginVertical="16dp"
-                >
+                android:layout_marginVertical="16dp">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/face_logo_inactived"
-                    />
+                    android:src="@drawable/face_logo_inactived" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/google_plus_logo_active"
                     android:layout_marginHorizontal="16dp"
-                    />
+                    android:src="@drawable/google_plus_logo_active" />
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/linkedin_logo_inactived"/>
+                    android:src="@drawable/linkedin_logo_inactived" />
 
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ou use seu email"
-                android:textAlignment="center"
                 android:layout_gravity="center"
-                />
+                android:text="ou use seu email"
+                android:textAlignment="center" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginVertical="40dp">
+                android:layout_marginVertical="40dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
                     android:text="@string/nameLabel"
-                    />
+                    android:textColor="@color/primary"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/etName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/nameHint"
-                    android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
+                    android:hint="@string/nameHint"
                     android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
-                    android:text="@string/cpfLabel"
                     android:layout_marginTop="16dp"
-                    />
+                    android:text="@string/cpfLabel"
+                    android:textColor="@color/primary"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/etCpf"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/cpfHint"
-                    android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
+                    android:hint="@string/cpfHint"
                     android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
-                    android:text="@string/birthLabel"
                     android:layout_marginTop="16dp"
-                    />
+                    android:text="@string/birthLabel"
+                    android:textColor="@color/primary"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/etBirthdate"
-                    android:inputType="text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/birthHint"
-                    android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
+                    android:hint="@string/birthHint"
+                    android:inputType="text"
                     android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
                 <TextView
+                    android:id="@+id/tVEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/emailLabel"
+                    android:textColor="@color/primary"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <EditText
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
-                    android:text="@string/emailLabel"
-                    android:layout_marginTop="16dp"
-                    />
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/emailHint"
-                    android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
+                    android:hint="@string/emailHint"
                     android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
-                    android:text="@string/passwordLabel"
                     android:layout_marginTop="16dp"
-                    />
+                    android:text="@string/passwordLabel"
+                    android:textColor="@color/primary"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/etPassword"
-                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/passwordHint"
-                    android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
+                    android:hint="@string/passwordHint"
+                    android:inputType="textPassword"
                     android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:textColor="@color/primary"
-                    android:text="@string/confirmPasswordLabel"
                     android:layout_marginTop="16dp"
-                    />
+                    android:text="@string/confirmPasswordLabel"
+                    android:textColor="@color/primary"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
                 <EditText
                     android:id="@+id/etConfirmYourPassword"
-                    android:inputType="textPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/confirmPasswordHint"
-                    android:backgroundTint="#E9F1E7"
                     android:background="#E9F1E7"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
+                    android:hint="@string/confirmPasswordHint"
+                    android:inputType="textPassword"
                     android:paddingHorizontal="8dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <CheckBox
+                        android:id="@+id/cbPolicyTerms"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content" />
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/policyTerms"
-                        />
+                        android:text="@string/policyTerms" />
 
                 </LinearLayout>
 
@@ -240,39 +228,30 @@
                     android:id="@+id/btnSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/signUpButtonLabel"
-                    android:textSize="12dp"
                     android:backgroundTint="@color/primary"
-                    />
+                    android:text="@string/signUpButtonLabel"
+                    android:textSize="12dp" />
 
                 <Button
                     android:id="@+id/btSignIn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/signInButtonLabel"
-                    android:textColor="@color/primary"
-                    android:backgroundTint="@color/transparent"
-                    android:shadowColor="@color/transparent"
-                    android:outlineSpotShadowColor="@color/transparent"
-                    android:textSize="12dp"
-                    android:outlineProvider="background"
                     android:layout_marginTop="16dp"
                     android:background="@drawable/button"
-                    />
+                    android:backgroundTint="@color/transparent"
+                    android:outlineProvider="background"
+                    android:outlineSpotShadowColor="@color/transparent"
+                    android:shadowColor="@color/transparent"
+                    android:text="@string/signInButtonLabel"
+                    android:textColor="@color/primary"
+                    android:textSize="12dp" />
 
             </LinearLayout>
-
-
-
-
-
-
 
 
         </LinearLayout>
 
     </ScrollView>
-
 
 
 </RelativeLayout>
