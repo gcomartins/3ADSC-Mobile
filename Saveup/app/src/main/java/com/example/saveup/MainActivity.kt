@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        startActivity(Intent(baseContext, DashboardCategoria::class.java))
         binding.btSignUp.setOnClickListener {
             GoToSignUpPage()
         }

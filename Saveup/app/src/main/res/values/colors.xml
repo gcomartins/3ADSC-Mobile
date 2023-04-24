@@ -15,4 +15,10 @@
     <color name="verde_grafico_inline">#6DA160</color>
     <color name="transparente">#73202020</color>
     <color name="secondary">#996DA160</color>
+    <color name="cinza">#d3d3d3</color>
+    <color name="pink_dashboard">#FF4895</color>
+    <color name="orange_dashboard">#FF8A48</color>
+    <color name="yellow_dahsboard">#FFE248</color>
+    <color name="blue_bold_dashboard">#256DA0</color>
+    <color name="white_ice">#FFFAFA</color>
 </resources>
