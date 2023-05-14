@@ -21,7 +21,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun goToHomePage() {
-        val homePage = Intent(this, SemGastos::class.java)
+        val homePage = Intent(this, FragmentSemGastos::class.java)
         startActivity(homePage)
     }
 
