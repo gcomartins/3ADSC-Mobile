@@ -8,6 +8,19 @@
     android:orientation="vertical"
     tools:context=".DashboardCategoria">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/transparent"
+        android:outlineAmbientShadowColor="@color/transparent"
+        android:outlineSpotShadowColor="@color/transparent"
+
+        >
+
+        <include layout="@layout/app_bar_dahsboard_categoria" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <com.anychart.AnyChartView
         android:id="@+id/pieChart"
         android:layout_marginVertical="15sp"

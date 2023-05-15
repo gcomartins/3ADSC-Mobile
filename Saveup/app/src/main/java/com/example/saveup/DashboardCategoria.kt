@@ -39,6 +39,7 @@ class DashboardCategoria: AppCompatActivity() {
         pie.data(dataPieChart)
         chart!!.setChart(pie)
 
+
     }
 }
 
