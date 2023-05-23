@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,3 +59,21 @@ class FragmentObjetivo : Fragment() {
             }
     }
 }
+
+class GraficoObjetivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+}
+
+//class MyAdapter : RecyclerView.Adapter<GraficoObjetivoViewHolder>() {
+//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraficoObjetivo {
+//        TODO("Not yet implemented")
+//    }
+//
+//    override fun getItemCount(): Int {
+//        return 5
+//    }
+//
+//    override fun onBindViewHolder(holder: GraficoObjetivo, position: Int) {
+//        holder
+//    }
+//
+//}

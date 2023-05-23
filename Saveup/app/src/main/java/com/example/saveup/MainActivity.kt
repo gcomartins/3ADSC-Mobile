@@ -17,6 +17,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        val signUpPage = Intent(this, TelaPrincipalActivity::class.java)
+        startActivity(signUpPage)
+
         binding.btSignUp.setOnClickListener {
             GoToSignUpPage()
         }

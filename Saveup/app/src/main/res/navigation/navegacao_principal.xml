@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navegacao_principal"
+    app:startDestination="@id/fragment1">
+
+    <fragment
+        android:id="@+id/fragment1"
+        android:name="com.example.saveup.FragmentDashboardResumo"
+        android:label="fragment_dashboard_resumo"
+        tools:layout="@layout/fragment_dashboard_resumo">
+        <action
+            android:id="@+id/fromFragment1ToFragment2"
+            app:destination="@id/fragment2"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment2"
+        android:name="com.example.saveup.FragmentObjetivo"
+        android:label="fragment_objetivo"
+        tools:layout="@layout/fragment_objetivo">
+        <action
+            android:id="@+id/action_fragment2_to_fragment1"
+            app:destination="@id/fragment3"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragment3"
+        android:name="com.example.saveup.FragmentObjetivo"
+        android:label="fragment_objetivo"
+        tools:layout="@layout/fragment_objetivo">
+        <action
+            android:id="@+id/action_fragment1_to_fragment3"
+            app:destination="@id/fragment1"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+
+</navigation>
