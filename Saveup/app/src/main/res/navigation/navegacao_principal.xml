@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/fragment1"
-        android:name="com.example.saveup.FragmentDashboardResumo"
+        android:name="com.example.saveup.FragmentSemGastos"
         android:label="fragment_dashboard_resumo"
-        tools:layout="@layout/fragment_dashboard_resumo">
+        tools:layout="@layout/fragment_sem_gastos">
         <action
             android:id="@+id/fromFragment1ToFragment2"
             app:destination="@id/fragment2"

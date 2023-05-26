@@ -5,8 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Adapter
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,24 +20,30 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class FragmentObjetivo : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var meuAdapter: ObjetivoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_objetivo, container, false)
+        // Inicialize o RecyclerView
+        recyclerView = view.findViewById(R.id.recyclerView)
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        // Inicialize o Adapter com os dados desejados e defina-o no RecyclerView
+        val dataList = listOf(Objetivo("Titulo", "Descricao"))// Exemplo de dados
+        meuAdapter = ObjetivoAdapter(dataList)
+        recyclerView.adapter = meuAdapter
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_objetivo, container, false)
+        return view
     }
 
     companion object {
@@ -60,20 +67,31 @@ class FragmentObjetivo : Fragment() {
     }
 }
 
-class GraficoObjetivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-}
+data class Objetivo(
+    val titulo: String,
+    val descricao: String,
+)
 
-//class MyAdapter : RecyclerView.Adapter<GraficoObjetivoViewHolder>() {
-//    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraficoObjetivo {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun getItemCount(): Int {
-//        return 5
-//    }
-//
-//    override fun onBindViewHolder(holder: GraficoObjetivo, position: Int) {
-//        holder
-//    }
-//
-//}
+class ObjetivoAdapter(private val list: List<Objetivo>) : RecyclerView.Adapter<ObjetivoAdapter.GraficoObjetivoViewHolder>() {
+
+    inner class GraficoObjetivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        fun bind(objetivo: Objetivo){
+            itemView.findViewById<TextView>(R.id.titulo).text = objetivo.titulo
+            itemView.findViewById<TextView>(R.id.descricao).text = objetivo.descricao
+        }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraficoObjetivoViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val view = inflater.inflate(R.layout.item_deposito_objetivo, parent, false)
+        return GraficoObjetivoViewHolder(view)
+    }
+
+    override fun getItemCount(): Int = list.size
+
+    override fun onBindViewHolder(holder: GraficoObjetivoViewHolder, position: Int) {
+        val objetivo = list[position]
+
+        holder.bind(objetivo)
+    }
+}
