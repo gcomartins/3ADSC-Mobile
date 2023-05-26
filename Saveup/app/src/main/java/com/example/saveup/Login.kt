@@ -37,7 +37,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun goToHomePage() {
-        val homePage = Intent(this, FragmentSemGastos::class.java)
+        val homePage = Intent(this, TelaPrincipalActivity::class.java)
         startActivity(homePage)
     }
 
