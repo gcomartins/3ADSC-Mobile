@@ -101,7 +101,11 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                        println(t)
+                        Toast.makeText(
+                            baseContext,
+                            "Servico indisponível!",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 })
         }
