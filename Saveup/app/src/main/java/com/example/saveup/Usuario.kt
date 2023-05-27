@@ -2,11 +2,11 @@ package com.example.saveup
 
 class USUARIO {
     companion object {
-        val nome: String? = null
-        val email: String? = null
-        val senha: String? = null
-        val telefone: String? = null
-        val cpf: String? = null
-        val dataNascimento: String? = null
+        var nome: String? = null
+        var email: String? = null
+        var senha: String? = null
+        var telefone: String? = null
+        var cpf: String? = null
+        var dataNascimento: String? = null
     }
 }
