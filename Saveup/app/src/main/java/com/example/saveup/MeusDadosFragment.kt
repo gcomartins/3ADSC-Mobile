@@ -64,8 +64,10 @@ class MeusDadosAdapter(private val list: List<DadoDoUsuario>): RecyclerView.Adap
 
     inner class MeusDadosViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(dado: DadoDoUsuario){
-            itemView.findViewById<android.widget.TextView>(R.id.tvLabel).text = dado.atributo
-            itemView.findViewById<android.widget.TextView>(R.id.etFormField).text = dado.valor
+            val label = itemView.findViewById<android.widget.TextView>(R.id.tvLabel)
+            val campo = itemView.findViewById<android.widget.TextView>(R.id.etFormField)
+            label.text = dado.atributo
+            campo.text = dado.valor
         }
     }
 
