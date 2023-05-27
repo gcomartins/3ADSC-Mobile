@@ -1,19 +1,20 @@
 package com.example.saveup
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
 class MeusDadosFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +34,11 @@ class MeusDadosFragment : Fragment() {
         )
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManager
-        val meuAdapter = MeusDadosAdapter(dataList)
+        val meuAdapter = MeusDadosAdapter(requireContext(), dataList)
         recyclerView.adapter = meuAdapter
 
         return view
     }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) = MeusDadosFragment()
-    }
-
 }
 
 data class Usuario(
@@ -60,14 +55,24 @@ data class DadoDoUsuario(
     val valor: String
 )
 
-class MeusDadosAdapter(private val list: List<DadoDoUsuario>): RecyclerView.Adapter<MeusDadosAdapter.MeusDadosViewHolder>(){
+class MeusDadosAdapter(
+    private val context: Context,
+    private val list: List<DadoDoUsuario>
+    ): RecyclerView.Adapter<MeusDadosAdapter.MeusDadosViewHolder>(){
 
     inner class MeusDadosViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         fun bind(dado: DadoDoUsuario){
-            val label = itemView.findViewById<android.widget.TextView>(R.id.tvLabel)
-            val campo = itemView.findViewById<android.widget.TextView>(R.id.etFormField)
+            val label = itemView.findViewById<TextView>(R.id.tvLabel)
+            val campo = itemView.findViewById<TextView>(R.id.etFormField)
+            val editIcon = itemView.findViewById<ImageView>(R.id.ivEditIcon)
             label.text = dado.atributo
             campo.text = dado.valor
+            editIcon.setOnClickListener {
+                val intent = Intent(context, EditarCampoActivity::class.java).apply {
+                    putExtra("atributo", dado.atributo)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 

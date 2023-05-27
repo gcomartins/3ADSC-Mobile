@@ -16,10 +16,11 @@
         />
 
     <ImageView
+        android:id="@+id/ivEditIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/edit_icon"
-        app:layout_constraintBottom_toBottomOf="@id/etFormField"
+        app:layout_constraintBaseline_toBaselineOf="@id/etFormField"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/etFormField"
         />

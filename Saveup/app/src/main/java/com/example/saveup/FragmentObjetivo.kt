@@ -10,24 +10,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentObjetivo.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentObjetivo : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var meuAdapter: ObjetivoAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +39,6 @@ class FragmentObjetivo : Fragment() {
         meuAdapter = ObjetivoAdapter(dataList)
         recyclerView.adapter = meuAdapter
 
-        // Inflate the layout for this fragment
         return view
     }
 
