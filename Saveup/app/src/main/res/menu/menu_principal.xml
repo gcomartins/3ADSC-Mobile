@@ -14,4 +14,9 @@
         android:id="@+id/fragment3"
         android:icon="@drawable/account_circle"
         android:title="Objetivo"/>
+
+    <item
+        android:id="@+id/fragment4"
+        android:icon="@drawable/caixa_de_detalhes_extrato"
+        android:title="Configuracoes"/>
 </menu>

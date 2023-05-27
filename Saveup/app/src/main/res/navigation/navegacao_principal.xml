@@ -38,4 +38,15 @@
             app:exitAnim="@android:anim/slide_out_right"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/fragment4"
+        android:name="com.example.saveup.MeusDadosFragment"
+        android:label="fragment_meus_dados"
+        tools:layout="@layout/fragment_meus_dados">
+        <action
+            android:id="@+id/action_fragment1_to_fragment3"
+            app:destination="@id/fragment1"
+            app:exitAnim="@android:anim/slide_out_right"/>
+    </fragment>
+
 </navigation>
