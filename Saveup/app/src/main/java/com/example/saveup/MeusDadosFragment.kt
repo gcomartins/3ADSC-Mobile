@@ -41,15 +41,6 @@ class MeusDadosFragment : Fragment() {
     }
 }
 
-data class Usuario(
-    val nome: String,
-    val email: String,
-    val senha: String,
-    val telefone: String,
-    val cpf: String,
-    val dataNascimento: String,
-    )
-
 data class DadoDoUsuario(
     val atributo: String,
     val valor: String
