@@ -54,6 +54,7 @@
         android:textStyle="bold"
         />
     <TextView
+        android:id="@+id/valorObjetivo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="R$12.000,00"

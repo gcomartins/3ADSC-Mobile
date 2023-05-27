@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,10 +36,19 @@ class FragmentObjetivo : Fragment() {
         val view = inflater.inflate(R.layout.fragment_objetivo, container, false)
         // Inicialize o RecyclerView
         recyclerView = view.findViewById(R.id.recyclerView)
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+
+        // Exemplo de dados
+        // E NECESSARIO REVER O LAYOUT POIS NAO ESTA DINAMICO
+        // TA COM A QUANTIDADE DE GRAFICOS MOCADA
+        val dataList = listOf(
+            Objetivo("Viagem", "Viagem para o exterior", 10000.0, 5000.0),
+            Objetivo("Carro", "Carro novo", 50000.0, 10000.0),
+            Objetivo("Casa", "Casa nova", 100000.0, 20000.0),
+            Objetivo("Celular", "Celular novo", 2000.0, 1000.0),
+        )
 
         // Inicialize o Adapter com os dados desejados e defina-o no RecyclerView
-        val dataList = listOf(Objetivo("Titulo", "Descricao"))// Exemplo de dados
         meuAdapter = ObjetivoAdapter(dataList)
         recyclerView.adapter = meuAdapter
 
@@ -46,38 +56,29 @@ class FragmentObjetivo : Fragment() {
         return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentObjetivo.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentObjetivo().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }
 
 data class Objetivo(
     val titulo: String,
     val descricao: String,
+    val valorObjetivo: Double,
+    val valorAtual: Double,
 )
 
 class ObjetivoAdapter(private val list: List<Objetivo>) : RecyclerView.Adapter<ObjetivoAdapter.GraficoObjetivoViewHolder>() {
 
     inner class GraficoObjetivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+        //FUNCAO QUE PEGA OS DADOS E TRANSFORMA NO GRAFICO DE OBJETIVO
         fun bind(objetivo: Objetivo){
-            itemView.findViewById<TextView>(R.id.titulo).text = objetivo.titulo
-            itemView.findViewById<TextView>(R.id.descricao).text = objetivo.descricao
+            val titulo = itemView.findViewById<TextView>(R.id.titulo)
+            val descricao = itemView.findViewById<TextView>(R.id.descricao)
+            val valorObjetivo = itemView.findViewById<TextView>(R.id.valorObjetivo)
+            val grafico = itemView.findViewById<ProgressBar>(R.id.progress_circular)
+
+            titulo.text = objetivo.titulo
+            descricao.text = objetivo.descricao
+            valorObjetivo.text = "R$ ${objetivo.valorObjetivo}"
+            grafico.progress = (objetivo.valorAtual / objetivo.valorObjetivo * 100).toInt()
         }
     }
 
