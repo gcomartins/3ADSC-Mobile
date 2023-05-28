@@ -82,6 +82,12 @@ class Login : AppCompatActivity() {
                                 "Login realizado com sucesso!",
                                 Toast.LENGTH_LONG
                             ).show()
+
+                            USUARIO.id = response.body()?.id
+                            USUARIO.cpf = response.body()?.cpf
+                            USUARIO.email = response.body()?.email
+                            USUARIO.nome = response.body()?.nome
+                            USUARIO.senha = response.body()?.senha
                             goToHomePage()
 
                         } else if(response.code() == 404){

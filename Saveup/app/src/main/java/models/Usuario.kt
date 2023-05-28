@@ -3,8 +3,9 @@ package models
 import java.util.*
 
 data class Usuario(
-    val email: String,
+    val id: Int,
     val nome: String,
+    val email: String,
     val senha: String,
     val dataNascimento: Date,
     val cpf: String,
