@@ -57,7 +57,6 @@ class DashboardResumo : AppCompatActivity() {
 
         line_chart.apply {
             setNoDataText("Nenhum dado disponível no momento")//msg exibida quando não há dados
-            title = "Dinheiro guardado"
             setNoDataTextColor(Color.GREEN)
             description = Description().also { description -> description.text = ""  }//retira description
         }
@@ -85,19 +84,18 @@ class DashboardResumo : AppCompatActivity() {
     }
 
 //    simula a busca de dados
-    fun getValorGuardadoPorMes():List<DinheiroGuardado>{
+    fun getValorGuardadoPorMes():List<DinheiroGuardado2>{
         return listOf(
-            DinheiroGuardado(100.0,1,2022),
-            DinheiroGuardado(200.0,2,2022),
-            DinheiroGuardado(300.0,3,2022),
-            DinheiroGuardado(500.0,4,2022),
-            DinheiroGuardado(200.0,5,2022),
-            DinheiroGuardado(300.0,6,2022),
-            DinheiroGuardado(250.0,7,2022),
-            DinheiroGuardado(0.0,8,2022),
-
+            DinheiroGuardado2(100.0,1,2022),
+            DinheiroGuardado2(200.0,2,2022),
+            DinheiroGuardado2(300.0,3,2022),
+            DinheiroGuardado2(500.0,4,2022),
+            DinheiroGuardado2(200.0,5,2022),
+            DinheiroGuardado2(300.0,6,2022),
+            DinheiroGuardado2(250.0,7,2022),
+            DinheiroGuardado2(0.0,8,2022),
         )
 
     }
-     data class DinheiroGuardado(val valor:Double, val mes:Int, val ano:Int)
+     data class DinheiroGuardado2(val valor:Double, val mes:Int, val ano:Int)
 }

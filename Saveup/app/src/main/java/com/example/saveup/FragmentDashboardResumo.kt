@@ -1,59 +1,126 @@
 package com.example.saveup
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import com.github.mikephil.charting.charts.LineChart
+import com.github.mikephil.charting.components.Description
+import com.github.mikephil.charting.components.Legend
+import com.github.mikephil.charting.components.XAxis
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FragmentDashboardResumo.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FragmentDashboardResumo : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var lineList:ArrayList<Entry>
+    lateinit var dataSet: LineDataSet
+    lateinit var lineData: LineData
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dashboard_resumo, container, false)
+        val view = inflater.inflate(R.layout.fragment_dashboard_resumo, container, false)
+
+        val tvSaldo = view.findViewById<TextView>(R.id.tv_saldo)
+        val tvValorGuardadoEsteMes = view.findViewById<TextView>(R.id.tv_valor_guardado_mes)
+
+        tvSaldo.text = "R$ ${getSaldo()}"
+        tvValorGuardadoEsteMes.text = "R$ ${getValorGuardadoEsteMes()}"
+
+        val valoresGuardadoPorMes = getValorGuardadoPorMes()
+
+        var etiquetas = valoresGuardadoPorMes.map { "${it.mes}/${it.ano}" }
+        var listaAuxiliar = listOf(etiquetas.get(0))
+        etiquetas = listaAuxiliar + etiquetas
+        lineList = ArrayList()
+        val entries = mutableListOf<Entry>()
+        valoresGuardadoPorMes.forEach { dinheiroGuardadoNoMes ->
+            entries.add(Entry(dinheiroGuardadoNoMes.mes.toFloat(), dinheiroGuardadoNoMes.valor.toFloat()))
+        }
+
+        dataSet = LineDataSet(entries, "")
+
+        lineData = LineData(dataSet)
+        R.layout.activity_dashboard_resumo
+        val line_chart = view.findViewById<LineChart>(R.id.linear_chart)
+
+        val verde_bolinha_grafico = ContextCompat.getColor(requireContext(), R.color.verde_grafico_inline)
+
+        line_chart.data = lineData
+        dataSet.color = verde_bolinha_grafico
+        dataSet.valueTextColor = Color.BLACK
+        dataSet.valueTextSize = 15f
+        dataSet.setDrawFilled(true)
+        dataSet.fillColor = Color.parseColor("#4CAF50") // verde claro
+        dataSet.fillAlpha = 30 // opacidade de 0 a 255
+        dataSet.circleRadius = 8f
+        dataSet.circleHoleColor = verde_bolinha_grafico
+        dataSet.circleColors = mutableListOf(verde_bolinha_grafico)
+
+        //Descricao do grafico
+        line_chart.legend.setDrawInside(false)
+        line_chart.legend.textColor = Color.GREEN
+        line_chart.legend.form = Legend.LegendForm.NONE
+
+        line_chart.apply {
+            setNoDataText("Nenhum dado disponível no momento")//msg exibida quando não há dados
+//            title = "Dinheiro guardado"
+            setNoDataTextColor(Color.GREEN)
+            description = Description().also { description -> description.text = ""  }//retira description
+        }
+
+
+        //removendo grids no fundo do gráfico
+
+        val yAxisLeft = line_chart.axisLeft
+        yAxisLeft.setDrawGridLines(false)
+        yAxisLeft.setDrawAxisLine(false)
+
+        val yAxisRight = line_chart.axisRight
+        yAxisRight.setDrawGridLines(false)
+        yAxisRight.setDrawAxisLine(false)
+        //Fim removendo grid do fundo
+
+        val xAxis = line_chart.xAxis
+        xAxis.setDrawGridLines(false)
+        xAxis.setDrawAxisLine(false)
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
+        xAxis.textColor = Color.BLACK
+        xAxis.textSize = 10F
+        return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FragmentDashboardResumo.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FragmentDashboardResumo().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun getValorGuardadoEsteMes(): String {
+        return "100,00"
+    }
+
+    private fun getSaldo(): String {
+        return "1000,00"
+    }
+
+    fun getValorGuardadoPorMes():List<DinheiroGuardado>{
+        return listOf(
+            DinheiroGuardado(100.0, 1, 2022),
+            DinheiroGuardado(200.0, 2, 2022),
+            DinheiroGuardado(300.0, 3, 2022),
+            DinheiroGuardado(500.0, 4, 2022),
+            DinheiroGuardado(200.0, 5, 2022),
+            DinheiroGuardado(300.0, 6, 2022),
+            DinheiroGuardado(250.0, 7, 2022),
+            DinheiroGuardado(0.0, 8, 2022),
+            )
+
     }
 }
+
+data class DinheiroGuardado(val valor:Double, val mes:Int, val ano:Int)

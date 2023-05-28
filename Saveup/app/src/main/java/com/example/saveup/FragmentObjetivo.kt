@@ -1,10 +1,13 @@
 package com.example.saveup
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -36,7 +39,7 @@ class FragmentObjetivo : Fragment() {
 
         // Inicialize o Adapter com os dados desejados e defina-o no RecyclerView
         // O adapter que vai pegar os dados e transformar no grafico de objetivo
-        meuAdapter = ObjetivoAdapter(dataList)
+        meuAdapter = ObjetivoAdapter(dataList, requireContext())
         recyclerView.adapter = meuAdapter
 
         return view
@@ -51,7 +54,10 @@ data class Objetivo(
     val valorAtual: Double,
 )
 
-class ObjetivoAdapter(private val list: List<Objetivo>) : RecyclerView.Adapter<ObjetivoAdapter.GraficoObjetivoViewHolder>() {
+class ObjetivoAdapter(
+    private val list: List<Objetivo>,
+    private val context: Context
+    ) : RecyclerView.Adapter<ObjetivoAdapter.GraficoObjetivoViewHolder>() {
 
     inner class GraficoObjetivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         //FUNCAO QUE PEGA OS DADOS E TRANSFORMA NO GRAFICO DE OBJETIVO
@@ -60,11 +66,24 @@ class ObjetivoAdapter(private val list: List<Objetivo>) : RecyclerView.Adapter<O
             val descricao = itemView.findViewById<TextView>(R.id.descricao)
             val valorObjetivo = itemView.findViewById<TextView>(R.id.valorObjetivo)
             val grafico = itemView.findViewById<ProgressBar>(R.id.progress_circular)
+            val progresso = (objetivo.valorAtual / objetivo.valorObjetivo * 100).toInt()
 
             titulo.text = objetivo.titulo
             descricao.text = objetivo.descricao
             valorObjetivo.text = "R$ ${objetivo.valorObjetivo}"
-            grafico.progress = (objetivo.valorAtual / objetivo.valorObjetivo * 100).toInt()
+            grafico.progress = progresso
+
+            val btnDetalhes = itemView.findViewById<Button>(R.id.btnDetalhes)
+            btnDetalhes.setOnClickListener {
+                val objetivoExpandido = Intent(context, ObjetivoExpandidoActivity::class.java).apply {
+                    putExtra("titulo", objetivo.titulo)
+                    putExtra("descricao", objetivo.descricao)
+                    putExtra("valorObjetivo", objetivo.valorObjetivo)
+                    putExtra("valorAtual", objetivo.valorAtual)
+                    putExtra("progresso", progresso)
+                }
+                context.startActivity(objetivoExpandido)
+            }
         }
     }
 
