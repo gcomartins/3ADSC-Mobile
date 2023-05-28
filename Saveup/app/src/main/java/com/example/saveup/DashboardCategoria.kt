@@ -28,7 +28,7 @@ class   DashboardCategoria: AppCompatActivity() {
         //create arrays for storing the values gotten
         val animalIDArray = Array<Int>(animal.size) { 0 }
         val animalNameArray = Array<String>(animal.size) { "natgeo" }
-        val animalNumberArray = Array<Int>(animal.size) { 0 }
+        val animalNumberArray = Array<Int>(animal.size) { 5 }
         val animalAgeArray = Array<Int>(animal.size) { 5 }
         val animalGrowthArray = Array<Int>(animal.size) { 0 }
 
@@ -92,7 +92,7 @@ class   DashboardCategoria: AppCompatActivity() {
 
     }
 }
-
+class AnimalModel (var animalId: Int, var animalName:String, var totNumber:Int, var avgAge: Int, var avgGrowth: Int)
 
 
 
