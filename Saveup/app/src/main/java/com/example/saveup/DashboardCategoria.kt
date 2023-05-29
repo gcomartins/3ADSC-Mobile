@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.content.ContextCompat
 import com.example.saveup.databinding.ActivityDashboardCategoriaBinding
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -23,6 +24,10 @@ class   DashboardCategoria: AppCompatActivity() {
         setContentView(R.layout.activity_dashboard_categoria)
         supportActionBar?.hide()
         ourPieChart = findViewById(R.id.pieChart)
+
+        val color = ContextCompat.getColor(this, R.color.white_ice) // Substitua R.color.my_color pelo ID da cor desejada
+
+        ourPieChart.setBackgroundColor(color) // Define a cor desejada como plano de fundo do gráfico
 
         // on below line we are setting user percent value,
         // setting description as enabled and offset for pie chart
