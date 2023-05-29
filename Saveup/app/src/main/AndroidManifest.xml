@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -14,16 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SaveUp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".DashboardCategoria"
+            android:name=".ObjetivoExpandidoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EditarCampoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TelaPrincipalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SemGastos"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SemGastos"
+            android:name=".DashboardCategoria"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -36,7 +45,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".NovaSenha"
             android:exported="false">

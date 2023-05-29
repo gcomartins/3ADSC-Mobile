@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FragmentObjetivoDetalhes">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        >
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/transparent"
+            android:outlineAmbientShadowColor="@color/transparent"
+            android:outlineSpotShadowColor="@color/transparent"
+            >
+
+            <include layout="@layout/app_bar_objetivos"/>
+
+        </com.google.android.material.appbar.AppBarLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:layout_margin="5dp">
+            <TextView
+                android:id="@+id/tvTituloObjetivoDetalhes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Reserva De Emergência"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:textColor="@color/black"
+                android:layout_marginTop="10dp"
+                />
+
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:id="@+id/pbInvestimento"
+                android:max="100"
+                android:progress="80"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Descrição"
+                android:textStyle="bold"
+                android:textColor="@color/grey"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Preciso montar minha reserva de emergência para poder encarar as dificuldades com leveza"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tvDescricaoObjetivoDetalhes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Valor"
+                android:textStyle="bold"
+                android:textColor="@color/grey"
+                />
+            <TextView
+                android:id="@+id/tvValorAtualObjetivoDetalhes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="R$ 12.000,00"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Valor Atual"
+                android:textStyle="bold"
+                android:textColor="@color/grey"
+                />
+            <TextView
+                android:id="@+id/tvValorTotalObjetivoDetalhes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="R$ 10.000,00"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Extrato"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/verde_grafico_inline"
+                />
+            <ScrollView
+                android:layout_width="380dp"
+                android:layout_height="380dp"
+                android:background="@drawable/caixa_de_detalhes_extrato"
+                android:layout_margin="5dp"
+                >
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="1"
+                    tools:itemCount="5"
+                    tools:listitem="@layout/item_detalhes_de_deposito" />
+            </ScrollView>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                android:textColor="@color/primary"
+                android:layout_margin="5dp"
+                android:textSize="12dp"
+                android:backgroundTint="@color/white"
+                />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

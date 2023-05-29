@@ -1,25 +1,42 @@
 package com.example.saveup
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.*
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 
-class DashboardResumo : AppCompatActivity() {
+class FragmentDashboardResumo : Fragment() {
+
     lateinit var lineList:ArrayList<Entry>
     lateinit var dataSet: LineDataSet
     lateinit var lineData: LineData
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dashboard_resumo)
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        val view = inflater.inflate(R.layout.fragment_dashboard_resumo, container, false)
+
+        val tvSaldo = view.findViewById<TextView>(R.id.tv_saldo)
+        val tvValorGuardadoEsteMes = view.findViewById<TextView>(R.id.tv_valor_guardado_mes)
+
+        tvSaldo.text = "R$ ${getSaldo()}"
+        tvValorGuardadoEsteMes.text = "R$ ${getValorGuardadoEsteMes()}"
+
         val valoresGuardadoPorMes = getValorGuardadoPorMes()
-        supportActionBar?.hide()
 
         var etiquetas = valoresGuardadoPorMes.map { "${it.mes}/${it.ano}" }
         var listaAuxiliar = listOf(etiquetas.get(0))
@@ -34,9 +51,9 @@ class DashboardResumo : AppCompatActivity() {
 
         lineData = LineData(dataSet)
         R.layout.activity_dashboard_resumo
-        val line_chart: LineChart = findViewById(R.id.linear_chart)
+        val line_chart = view.findViewById<LineChart>(R.id.linear_chart)
 
-        val verde_bolinha_grafico = ContextCompat.getColor(this, R.color.verde_grafico_inline)
+        val verde_bolinha_grafico = ContextCompat.getColor(requireContext(), R.color.verde_grafico_inline)
 
         line_chart.data = lineData
         dataSet.color = verde_bolinha_grafico
@@ -50,13 +67,13 @@ class DashboardResumo : AppCompatActivity() {
         dataSet.circleColors = mutableListOf(verde_bolinha_grafico)
 
         //Descricao do grafico
-
         line_chart.legend.setDrawInside(false)
         line_chart.legend.textColor = Color.GREEN
         line_chart.legend.form = Legend.LegendForm.NONE
 
         line_chart.apply {
             setNoDataText("Nenhum dado disponível no momento")//msg exibida quando não há dados
+//            title = "Dinheiro guardado"
             setNoDataTextColor(Color.GREEN)
             description = Description().also { description -> description.text = ""  }//retira description
         }
@@ -80,22 +97,30 @@ class DashboardResumo : AppCompatActivity() {
         xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
         xAxis.textColor = Color.BLACK
         xAxis.textSize = 10F
-
+        return view
     }
 
-//    simula a busca de dados
-    fun getValorGuardadoPorMes():List<DinheiroGuardado2>{
+    private fun getValorGuardadoEsteMes(): String {
+        return "100,00"
+    }
+
+    private fun getSaldo(): String {
+        return "1000,00"
+    }
+
+    fun getValorGuardadoPorMes():List<DinheiroGuardado>{
         return listOf(
-            DinheiroGuardado2(100.0,1,2022),
-            DinheiroGuardado2(200.0,2,2022),
-            DinheiroGuardado2(300.0,3,2022),
-            DinheiroGuardado2(500.0,4,2022),
-            DinheiroGuardado2(200.0,5,2022),
-            DinheiroGuardado2(300.0,6,2022),
-            DinheiroGuardado2(250.0,7,2022),
-            DinheiroGuardado2(0.0,8,2022),
-        )
+            DinheiroGuardado(100.0, 1, 2022),
+            DinheiroGuardado(200.0, 2, 2022),
+            DinheiroGuardado(300.0, 3, 2022),
+            DinheiroGuardado(500.0, 4, 2022),
+            DinheiroGuardado(200.0, 5, 2022),
+            DinheiroGuardado(300.0, 6, 2022),
+            DinheiroGuardado(250.0, 7, 2022),
+            DinheiroGuardado(0.0, 8, 2022),
+            )
 
     }
-     data class DinheiroGuardado2(val valor:Double, val mes:Int, val ano:Int)
 }
+
+data class DinheiroGuardado(val valor:Double, val mes:Int, val ano:Int)

@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object Rest {
 
-    private val BASE_URL = "http://54.163.208.87:8080"
+    private val BASE_URL = "https://save-up.3utilities.com:8080"
 
     fun getInstance(): Retrofit {
         return Retrofit

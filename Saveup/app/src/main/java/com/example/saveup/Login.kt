@@ -37,7 +37,7 @@ class Login : AppCompatActivity() {
     }
 
     private fun goToHomePage() {
-        val homePage = Intent(this, SemGastos::class.java)
+        val homePage = Intent(this, TelaPrincipalActivity::class.java)
         startActivity(homePage)
     }
 
@@ -82,6 +82,12 @@ class Login : AppCompatActivity() {
                                 "Login realizado com sucesso!",
                                 Toast.LENGTH_LONG
                             ).show()
+
+                            USUARIO.id = response.body()?.id
+                            USUARIO.cpf = response.body()?.cpf
+                            USUARIO.email = response.body()?.email
+                            USUARIO.nome = response.body()?.nome
+                            USUARIO.senha = response.body()?.senha
                             goToHomePage()
 
                         } else if(response.code() == 404){
@@ -101,7 +107,11 @@ class Login : AppCompatActivity() {
                     }
 
                     override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                        println(t)
+                        Toast.makeText(
+                            baseContext,
+                            "Servico indisponível!",
+                            Toast.LENGTH_LONG
+                        ).show()
                     }
                 })
         }

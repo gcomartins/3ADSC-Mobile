@@ -1,11 +1,9 @@
 package service
 
 import models.Usuario
+import models.UsuarioCadastro
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.PUT
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface UsuarioService {
 
@@ -14,8 +12,9 @@ interface UsuarioService {
 
     @POST("/usuarios")
     fun cadastrar(
-        usuario: Usuario
-    ): retrofit2.Call<Usuario>
+       @Body usuarioCadastro: UsuarioCadastro
+
+    ): retrofit2.Call<UsuarioCadastro>
 
     @PUT("/usuarios/login/{email}/{senha}")
     fun login(

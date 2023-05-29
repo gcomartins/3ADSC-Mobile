@@ -61,6 +61,8 @@
     <string name="SignInWith">Entre com</string>
     <string name="orUseYourEmail">ou use seu email</string>
     <string name="forgetMyPassword">Esqueci minha senha</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="app_bar_resumo" translatable="false">Resumo</string>
 </resources>
