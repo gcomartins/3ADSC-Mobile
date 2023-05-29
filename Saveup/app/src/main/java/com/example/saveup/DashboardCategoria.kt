@@ -1,6 +1,7 @@
 package com.example.saveup
 
 import android.graphics.Color
+import android.graphics.Typeface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.saveup.databinding.ActivityDashboardCategoriaBinding
@@ -10,6 +11,8 @@ import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.formatter.PercentFormatter
+import com.github.mikephil.charting.utils.MPPointF
 
 class   DashboardCategoria: AppCompatActivity() {
     private lateinit var binding: ActivityDashboardCategoriaBinding
@@ -19,80 +22,99 @@ class   DashboardCategoria: AppCompatActivity() {
         binding = ActivityDashboardCategoriaBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_dashboard_categoria)
         supportActionBar?.hide()
-        ourPieChart = binding.pieChart
-        retrieveRecordsAndPopulateCharts()
-    }
-    fun retrieveRecordsAndPopulateCharts() {
-        //calling the retreiveAnimals method of DatabaseHandler class to read the records
-         val animal = listOf(200,300,400,600,500)
-        //create arrays for storing the values gotten
-        val animalIDArray = Array<Int>(animal.size) { 0 }
-        val animalNameArray = Array<String>(animal.size) { "natgeo" }
-        val animalNumberArray = Array<Int>(animal.size) { 5 }
-        val animalAgeArray = Array<Int>(animal.size) { 5 }
-        val animalGrowthArray = Array<Int>(animal.size) { 0 }
+        ourPieChart = findViewById(R.id.pieChart)
 
-        //call the methods for populating the charts
-        populatePieChart(animalNumberArray, animalNameArray)
+        // on below line we are setting user percent value,
+        // setting description as enabled and offset for pie chart
+        ourPieChart.setUsePercentValues(true)
+        ourPieChart.getDescription().setEnabled(false)
+        ourPieChart.setExtraOffsets(5f, 10f, 5f, 5f)
 
-    }
+        // on below line we are setting drag for our pie chart
+        ourPieChart.setDragDecelerationFrictionCoef(0.95f)
 
+        // on below line we are setting hole
+        // and hole color for pie chart
+        ourPieChart.setDrawHoleEnabled(true)
+        ourPieChart.setHoleColor(Color.WHITE)
 
-    private fun populatePieChart(values: Array<Int>, labels: Array<String>) {
-        //an array to store the pie slices entry
-        val ourPieEntry = ArrayList<PieEntry>()
-        var i = 0
+        // on below line we are setting circle color and alpha
+        ourPieChart.setTransparentCircleColor(Color.WHITE)
+        ourPieChart.setTransparentCircleAlpha(110)
 
-        for (entry in values) {
-            //converting to float
-            var value = values[i].toFloat()
-            var label = labels[i]
-            //adding each value to the pieentry array
-            ourPieEntry.add(PieEntry(value, label))
-            i++
-        }
+        // on  below line we are setting hole radius
+        ourPieChart.setHoleRadius(58f)
+        ourPieChart.setTransparentCircleRadius(61f)
 
-        //assigning color to each slices
-        val pieShades: ArrayList<Int> = ArrayList()
-        pieShades.add(Color.parseColor("#0E2DEC"))
-        pieShades.add(Color.parseColor("#B7520E"))
-        pieShades.add(Color.parseColor("#5E6D4E"))
-        pieShades.add(Color.parseColor("#DA1F12"))
+        // on below line we are setting center text
+        ourPieChart.setDrawCenterText(true)
 
-        //add values to the pie dataset and passing them to the constructor
-        val ourSet = PieDataSet(ourPieEntry, "")
-        val data = PieData(ourSet)
+        // on below line we are setting
+        // rotation for our pie chart
+        ourPieChart.setRotationAngle(0f)
 
-        //setting the slices divider width
-        ourSet.sliceSpace = 1f
+        // enable rotation of the pieChart by touch
+        ourPieChart.setRotationEnabled(true)
+        ourPieChart.setHighlightPerTapEnabled(true)
 
-        //populating the colors and data
-        ourSet.colors = pieShades
-        ourPieChart.data = data
-        //setting color and size of text
-        data.setValueTextColor(Color.WHITE)
-        data.setValueTextSize(10f)
-
-        //add an animation when rendering the pie chart
+        // on below line we are setting animation for our pie chart
         ourPieChart.animateY(1400, Easing.EaseInOutQuad)
-        //disabling center hole
-        ourPieChart.isDrawHoleEnabled = false
-        //do not show description text
-        ourPieChart.description.isEnabled = false
-        //legend enabled and its various appearance settings
-        ourPieChart.legend.isEnabled = true
-        ourPieChart.legend.orientation = Legend.LegendOrientation.HORIZONTAL
-        ourPieChart.legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
-        ourPieChart.legend.isWordWrapEnabled = true
 
-        //dont show the text values on slices e.g Antelope, impala etc
-        ourPieChart.setDrawEntryLabels(false)
-        //refreshing the chart
+        // on below line we are disabling our legend for pie chart
+        ourPieChart.legend.isEnabled = false
+        ourPieChart.setEntryLabelColor(Color.WHITE)
+        ourPieChart.setEntryLabelTextSize(12f)
+        ourPieChart.setHoleRadius(1f)
+        ourPieChart.setTransparentCircleRadius(1f)
+
+        // on below line we are creating array list and
+        // adding data to it to display in pie chart
+        val entries: ArrayList<PieEntry> = ArrayList()
+        entries.add(PieEntry(25f))
+        entries.add(PieEntry(30f))
+        entries.add(PieEntry(20f))
+        entries.add(PieEntry(30f))
+        entries.add(PieEntry(5f))
+
+        // on below line we are setting pie data set
+        val dataSet = PieDataSet(entries, "teste")
+        // on below line we are setting icons.
+        dataSet.setDrawIcons(false)
+
+        // on below line we are setting slice for pie
+        dataSet.sliceSpace = 3f
+        dataSet.iconsOffset = MPPointF(0f, 40f)
+        dataSet.selectionShift = 5f
+        dataSet.sliceSpace = 0f
+
+        // add a lot of colors to list
+        val colors: ArrayList<Int> = ArrayList()
+        colors.add(resources.getColor(R.color.yellow_dahsboard))
+        colors.add(resources.getColor(R.color.pink_dashboard))
+        colors.add(resources.getColor(R.color.blue_bold_dashboard))
+        colors.add(resources.getColor(R.color.orange_dashboard))
+        colors.add(resources.getColor(R.color.teal_200))
+
+
+        // on below line we are setting colors.
+        dataSet.colors = colors
+
+        // on below line we are setting pie data set
+        val data = PieData(dataSet)
+        data.setValueFormatter(PercentFormatter())
+        data.setValueTextSize(15f)
+        data.setValueTypeface(Typeface.DEFAULT_BOLD)
+        data.setValueTextColor(Color.WHITE)
+        ourPieChart.setData(data)
+
+        // undo all highlights
+        ourPieChart.highlightValues(null)
+
+        // loading chart
         ourPieChart.invalidate()
 
     }
 }
-class AnimalModel (var animalId: Int, var animalName:String, var totNumber:Int, var avgAge: Int, var avgGrowth: Int)
 
 
 
