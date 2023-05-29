@@ -18,9 +18,9 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.example.saveup.FragmentObjetivo"
+        android:name="com.example.saveup.DashboardFragment"
         android:label="fragment_objetivo"
-        tools:layout="@layout/fragment_objetivo">
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_fragment2_to_fragment1"
             app:destination="@id/fragment3"
