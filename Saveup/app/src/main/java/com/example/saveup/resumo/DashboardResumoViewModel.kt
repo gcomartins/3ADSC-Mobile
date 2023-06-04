@@ -16,8 +16,8 @@ import service.FinancasService
 class DashboardResumoViewModel: ViewModel() {
     private val retrofit = Rest.getInstance()
 
-    val allDespesas: MutableLiveData<List<Despesa>> = MutableLiveData()
-    val allReceitas: MutableLiveData<List<Receita>> = MutableLiveData()
+    val allDespesas: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
+    val allReceitas: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
     val saldoPorMes: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
 
     fun getAllDespesasByIdUsuario(idUsuario: Int) {
@@ -30,7 +30,13 @@ class DashboardResumoViewModel: ViewModel() {
                 response: Response<List<Despesa>>
             ) {
                 if (response.isSuccessful){
-                    allDespesas.value = response.body() ?: listOf()
+                    allDespesas.value = response.body()?.map { despesa ->
+                        ValorGrafico(
+                            valor = despesa.valor,
+                            mes = despesa.data.subSequence(5, 7).toString().toInt(),
+                            ano = despesa.data.subSequence(0, 4).toString().toInt()
+                        )
+                    }
                 }
             }
 
@@ -51,7 +57,13 @@ class DashboardResumoViewModel: ViewModel() {
                 response: Response<List<Receita>>
             ) {
                 if (response.isSuccessful){
-                    allReceitas.value = response.body() ?: listOf()
+                    allReceitas.value = response.body()?.map {receita ->
+                        ValorGrafico(
+                            valor = receita.valor,
+                            mes = receita.data.subSequence(5, 7).toString().toInt(),
+                            ano = receita.data.subSequence(0, 4).toString().toInt()
+                        )
+                    }
                 }
             }
 

@@ -11,8 +11,6 @@ import androidx.core.content.ContextCompat
 import com.example.saveup.R
 import com.example.saveup.USUARIO
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
@@ -23,8 +21,6 @@ import java.util.Calendar
 class FragmentDashboardResumo : Fragment() {
 
     lateinit var viewModel: DashboardResumoViewModel
-
-
 
     lateinit var lineList:ArrayList<Entry>
     lateinit var dataSet: LineDataSet
@@ -51,92 +47,20 @@ class FragmentDashboardResumo : Fragment() {
         }
 
         viewModel.saldoPorMes.observe(viewLifecycleOwner){
-            setaGrafico(view)
+            plotaGraficoValorGuardadoPorMes(view)
         }
 
-        val valoresGuardadoPorMes = getValorGuardadoPorMes()
-
-        var etiquetas = valoresGuardadoPorMes.map { "${it.mes}/${it.ano}" }
-        var listaAuxiliar = listOf(etiquetas.get(0))
-        etiquetas = listaAuxiliar + etiquetas
-        lineList = ArrayList()
-        val entries = mutableListOf<Entry>()
-        valoresGuardadoPorMes.forEach { dinheiroGuardadoNoMes ->
-            entries.add(Entry(dinheiroGuardadoNoMes.mes.toFloat(), dinheiroGuardadoNoMes.valor.toFloat()))
-        }
-//
-        dataSet = LineDataSet(entries, "")
-//
-        lineData = LineData(dataSet)
-        R.layout.activity_dashboard_resumo
-        val line_chart = view.findViewById<LineChart>(R.id.linear_chart)
-
-        val verde_bolinha_grafico = ContextCompat.getColor(requireContext(),
-            R.color.verde_grafico_inline
-        )
-//
-        line_chart.data = lineData
-        dataSet.color = verde_bolinha_grafico
-        dataSet.valueTextColor = Color.BLACK
-        dataSet.valueTextSize = 15f
-        dataSet.setDrawFilled(true)
-        dataSet.fillColor = Color.parseColor("#4CAF50") // verde claro
-        dataSet.fillAlpha = 30 // opacidade de 0 a 255
-        dataSet.circleRadius = 8f
-        dataSet.circleHoleColor = verde_bolinha_grafico
-        dataSet.circleColors = mutableListOf(verde_bolinha_grafico)
-
-        //Descricao do grafico
-        line_chart.legend.setDrawInside(false)
-        line_chart.legend.textColor = Color.GREEN
-        line_chart.legend.form = Legend.LegendForm.NONE
-
-        line_chart.apply {
-            setNoDataText("Nenhum dado disponível no momento")//msg exibida quando não há dados
-//            title = "Dinheiro guardado"
-            setNoDataTextColor(Color.GREEN)
-            description = Description().also { description -> description.text = ""  }//retira description
-        }
-
-
-        //removendo grids no fundo do gráfico
-
-        val yAxisLeft = line_chart.axisLeft
-        yAxisLeft.setDrawGridLines(false)
-        yAxisLeft.setDrawAxisLine(false)
-
-        val yAxisRight = line_chart.axisRight
-        yAxisRight.setDrawGridLines(false)
-        yAxisRight.setDrawAxisLine(false)
-        //Fim removendo grid do fundo
-
-        val xAxis = line_chart.xAxis
-        xAxis.setDrawGridLines(false)
-        xAxis.setDrawAxisLine(false)
-        xAxis.position = XAxis.XAxisPosition.BOTTOM
-        xAxis.valueFormatter = IndexAxisValueFormatter(etiquetas)
-        xAxis.textColor = Color.BLACK
-        xAxis.textSize = 10F
         return view
     }
 
     private fun reloadValues(){
         calculaSaldo()
         calculaSaldoDoMes()
-        setaValoresGuardadosPorMes()
+        geraSaldoPorMes()
     }
 
     fun getValorGuardadoPorMes():List<ValorGrafico>{
-        return listOf(
-            ValorGrafico(100.0, 1, 2022),
-            ValorGrafico(200.0, 2, 2022),
-            ValorGrafico(300.0, 3, 2022),
-            ValorGrafico(500.0, 4, 2022),
-            ValorGrafico(200.0, 5, 2022),
-            ValorGrafico(300.0, 6, 2022),
-            ValorGrafico(250.0, 7, 2022),
-            ValorGrafico(0.0, 8, 2022),
-        )
+        return viewModel.saldoPorMes.value ?: listOf()
     }
 
     private fun calculaSaldo(){
@@ -156,15 +80,15 @@ class FragmentDashboardResumo : Fragment() {
         val mesAtual = Calendar.getInstance().get(Calendar.MONTH) + 1
         val anoAtual = Calendar.getInstance().get(Calendar.YEAR)
         viewModel.allReceitas.value?.forEach {
-            val mes = it.data.subSequence(5,6).toString().toInt()
-            val ano = it.data.subSequence(0,3).toString().toInt()
+            val mes = it.mes
+            val ano = it.ano
             if(mes == mesAtual && ano == anoAtual){
                 saldo += it.valor
             }
         }
         viewModel.allDespesas.value?.forEach {
-            val mes = it.data.subSequence(5,6).toString().toInt()
-            val ano = it.data.subSequence(0,3).toString().toInt()
+            val mes = it.mes
+            val ano = it.ano
             if(mes == mesAtual && ano == anoAtual){
                 saldo -= it.valor
             }
@@ -173,13 +97,102 @@ class FragmentDashboardResumo : Fragment() {
         tvGuardadoMes.text = "$saldo"
     }
 
-    private fun setaValoresGuardadosPorMes(){
-        val despesasPorMesEAno = viewModel.allDespesas.value?.groupBy { "${it.data.subSequence(5,6)}${it.data.subSequence(0,3)}" }
-        val receitasPorMesEAno = viewModel.allReceitas.value?.groupBy { "${it.data.subSequence(5,6)}${it.data.subSequence(0,3)}" }
+    private fun geraSaldoPorMes(){
+        val saldoPorMes = mutableListOf<ValorGrafico>()
+        val mesAtual = Calendar.getInstance().get(Calendar.MONTH) + 1
+        val anoAtual = Calendar.getInstance().get(Calendar.YEAR)
+        for(i in 1..mesAtual){
+            var saldo = 0.0
+            viewModel.allReceitas.value?.forEach {
+                val mes = it.mes
+                val ano = it.ano
+                if(mes == i && ano == anoAtual){
+                    saldo += it.valor
+                }
+            }
+            viewModel.allDespesas.value?.forEach {
+                val mes = it.mes
+                val ano = it.ano
+                if(mes == i && ano == anoAtual){
+                    saldo -= it.valor
+                }
+            }
+            saldoPorMes.add(ValorGrafico(saldo, i, anoAtual))
+        }
+        viewModel.saldoPorMes.value = saldoPorMes
     }
 
-    private fun setaGrafico(view: View){
-        val saldoPorMes = viewModel.saldoPorMes.value
+    private fun plotaGraficoValorGuardadoPorMes(view: View){
+        // Obtenha uma referência para o LineChart
+        val lineChart = view.findViewById<LineChart>(R.id.linear_chart)
+
+        // Criar uma lista de entradas (Entry) com dados de exemplo
+        val entries = mutableListOf<Entry>()
+
+        for (valorGrafico in viewModel.saldoPorMes.value!!) {
+            val xValue = valorGrafico.ano.toFloat() + valorGrafico.mes.toFloat() / 100 // combinação de ano e mês para o eixo X
+            val yValue = valorGrafico.valor.toFloat() // valor do eixo Y (valor)
+
+            val entry = Entry(xValue, yValue)
+            entries.add(entry)
+        }
+
+        // Criar um conjunto de dados (LineDataSet) e atribuir as entradas a ele
+        val dataSet = LineDataSet(entries, "Valores Guardados")
+
+        val verde_bolinha_grafico = ContextCompat.getColor(requireContext(),
+            R.color.verde_grafico_inline
+        )
+
+        dataSet.color = verde_bolinha_grafico
+        dataSet.valueTextColor = Color.BLACK
+        dataSet.valueTextSize = 15f
+        dataSet.setDrawFilled(true)
+        dataSet.fillColor = Color.parseColor("#4CAF50") // verde claro
+        dataSet.fillAlpha = 30 // opacidade de 0 a 255
+        dataSet.circleRadius = 8f
+        dataSet.circleHoleColor = verde_bolinha_grafico
+        dataSet.circleColors = mutableListOf(verde_bolinha_grafico)
+
+        // Criar um objeto LineData e atribuir o conjunto de dados a ele
+        val lineData = LineData(dataSet)
+
+        // Configurar o LineChart com os dados e personalizações desejadas
+        lineChart.data = lineData
+        lineChart.description.isEnabled = false
+
+        // Configurar o eixo X para exibir todos os rótulos
+        val xAxis = lineChart.xAxis
+        xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("Jan", "Fev", "Mar", "Abr", "Mai"))
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
+        xAxis.setDrawGridLines(false)
+        xAxis.setAvoidFirstLastClipping(false)
+
+        //removendo grids no fundo do gráfico
+
+        val yAxisLeft = lineChart.axisLeft
+        yAxisLeft.setDrawGridLines(false)
+        yAxisLeft.setDrawAxisLine(false)
+
+        val yAxisRight = lineChart.axisRight
+        yAxisRight.setDrawGridLines(false)
+        yAxisRight.setDrawAxisLine(false)
+        //Fim removendo grid do fundo
+
+        // Ajustar a largura dos rótulos do eixo X
+        xAxis.labelRotationAngle = -45f
+        xAxis.labelCount = entries.size
+
+        val yValues = entries.map { it.y } // Extrair os valores y de cada entrada
+        val minValue = yValues.minOrNull() ?: 0f // Valor mínimo, considerando que o mínimo seja 0 se não houver valores
+        val maxValue = (yValues.maxOrNull()?.plus(100f)) ?: 100f // Valor máximo, considerando que o máximo seja 100 se não houver valores
+
+        lineChart.axisLeft.axisMinimum = minValue
+        lineChart.axisLeft.axisMaximum = maxValue
+        lineChart.axisRight.isEnabled = false
+        lineChart.legend.isEnabled = false
+        lineChart.invalidate()
+
 
     }
 
