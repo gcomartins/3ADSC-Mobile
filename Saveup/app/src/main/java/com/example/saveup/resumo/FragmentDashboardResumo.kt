@@ -59,10 +59,6 @@ class FragmentDashboardResumo : Fragment() {
         geraSaldoPorMes()
     }
 
-    fun getValorGuardadoPorMes():List<ValorGrafico>{
-        return viewModel.saldoPorMes.value ?: listOf()
-    }
-
     private fun calculaSaldo(){
         var saldo = 0.0
         viewModel.allReceitas.value?.forEach {
