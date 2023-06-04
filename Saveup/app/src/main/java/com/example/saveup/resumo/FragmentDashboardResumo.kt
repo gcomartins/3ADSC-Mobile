@@ -50,9 +50,6 @@ class FragmentDashboardResumo : Fragment() {
         viewModel.getAllDespesasByIdUsuario(USUARIO.id ?: 0)
         viewModel.getAllReceitasByIdUsuario(USUARIO.id ?: 0)
 
-        viewModel.criarDespesa(requireContext())
-        viewModel.criarReceita(requireContext())
-
         viewModel.allReceitas.observe(viewLifecycleOwner){
             calculaSaldo()
             calculaSaldoDoMes()
