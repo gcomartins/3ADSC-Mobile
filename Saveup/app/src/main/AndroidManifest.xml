@@ -18,6 +18,10 @@
         <activity
             android:name=".ObjetivoExpandidoActivity"
             android:exported="false" />
+
+        <activity android:name=".NovaDespesa" />
+        <activity android:name=".NovaReceita" />
+
         <activity
             android:name=".EditarCampoActivity"
             android:exported="false" />
