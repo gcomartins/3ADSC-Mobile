@@ -1,12 +1,11 @@
 package com.example.saveup
 
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
 import android.widget.Toast
-import com.example.saveup.databinding.ActivityCadastroBinding
+import androidx.appcompat.app.AppCompatActivity
 import com.example.saveup.databinding.ActivityLoginBinding
 import models.Usuario
 import rest.Rest
@@ -14,6 +13,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import service.UsuarioService
+import java.util.*
 
 class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -30,7 +30,7 @@ class Login : AppCompatActivity() {
         }
 
         binding.btSignUp.setOnClickListener {
-            GoToSignUpPage()
+            GoToSignUpPage(this.baseContext)
         }
 
 
@@ -41,8 +41,8 @@ class Login : AppCompatActivity() {
         startActivity(homePage)
     }
 
-    private fun GoToSignUpPage() {
-        val signUpPage = Intent(this, Cadastro::class.java)
+    fun GoToSignUpPage(context: Context) {
+        val signUpPage = Intent(context, Cadastro::class.java)
         startActivity(signUpPage)
     }
 
@@ -64,7 +64,12 @@ class Login : AppCompatActivity() {
             else -> true
         }
     }
-
+    private fun formateDate(date: Date?): String{
+        if (date == null) return ""
+        val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val dataFormatada = dateFormat.format(date)
+        return  dataFormatada
+    }
 
     private fun login() {
         val email = binding.etEmailLogin.text.toString()
@@ -82,12 +87,14 @@ class Login : AppCompatActivity() {
                                 "Login realizado com sucesso!",
                                 Toast.LENGTH_LONG
                             ).show()
-
+                            val dataDenascimento: Date? = response.body()?.dataNascimento
+                            val dataFormatada: String = formateDate(dataDenascimento)
                             USUARIO.id = response.body()?.id
                             USUARIO.cpf = response.body()?.cpf
                             USUARIO.email = response.body()?.email
                             USUARIO.nome = response.body()?.nome
                             USUARIO.senha = response.body()?.senha
+                            USUARIO.dataNascimento = dataFormatada
                             goToHomePage()
 
                         } else if(response.code() == 404){

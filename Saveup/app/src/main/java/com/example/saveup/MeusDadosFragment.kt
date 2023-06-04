@@ -3,16 +3,15 @@ package com.example.saveup
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 
 class MeusDadosFragment : Fragment() {
 
@@ -23,14 +22,20 @@ class MeusDadosFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_meus_dados, container, false)
 
+        val button = view.findViewById<Button>(R.id.button)
+        button.setOnClickListener {
+            logoff(it)
+        }
+
         val recyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.rvMeusDados)
         val dataList = listOf(
-            DadoDoUsuario("Nome", "João da Silva"),
-            DadoDoUsuario("E-mail", "joao.silva@email.com"),
-            DadoDoUsuario("Senha", "Senha@123"),
-            DadoDoUsuario("Telefone", "(11) 99999-9999"),
-            DadoDoUsuario("CPF", "999.999.999-99"),
-            DadoDoUsuario("Data de Nascimento", "01/01/2000")
+            DadoDoUsuario("Nome", USUARIO.nome ?: "nome Usuario"),
+            DadoDoUsuario("E-mail", USUARIO.email ?: "Email do usuario"),
+            DadoDoUsuario("Senha", USUARIO.senha ?: "Senha do usuario"),
+            DadoDoUsuario(
+                "Data de Nascimento",
+                USUARIO.dataNascimento ?: "data de nascimento usuario"
+            )
         )
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManager
@@ -39,14 +44,33 @@ class MeusDadosFragment : Fragment() {
 
         return view
     }
+
+    private fun logoff(view: View) {
+        emptyUsuario()
+        goToLogin()
+    }
+
+    private fun goToLogin(){
+        val intent = Intent(requireContext(), Login::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+    }
+    private fun emptyUsuario() {
+        USUARIO.id = null
+        USUARIO.nome = null
+        USUARIO.senha = null
+        USUARIO.dataNascimento = null
+    }
 }
 
-data class DadoDoUsuario(
+
+
+    private data class DadoDoUsuario(
     val atributo: String,
     val valor: String
 )
 
-class MeusDadosAdapter(
+private class MeusDadosAdapter(
     private val context: Context,
     private val list: List<DadoDoUsuario>
     ): RecyclerView.Adapter<MeusDadosAdapter.MeusDadosViewHolder>(){
@@ -81,3 +105,4 @@ class MeusDadosAdapter(
     }
 
 }
+
