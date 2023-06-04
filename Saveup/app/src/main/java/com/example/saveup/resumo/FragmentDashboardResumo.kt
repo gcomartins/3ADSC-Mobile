@@ -122,83 +122,81 @@ class FragmentDashboardResumo : Fragment() {
         viewModel.saldoPorMes.value = saldoPorMes
     }
 
-    private fun plotaGraficoValorGuardadoPorMes(view: View){
-        // Obtenha uma referência para o LineChart
+    private fun plotaGraficoValorGuardadoPorMes(view: View) {
         val lineChart = view.findViewById<LineChart>(R.id.linear_chart)
+        val entries = criarEntradasGrafico()
+        val dataSet = criarDataSet(entries)
+        val lineData = LineData(dataSet)
 
-        // Criar uma lista de entradas (Entry) com dados de exemplo
+        configurarLineChart(lineChart, lineData)
+        configurarEixoX(lineChart, entries)
+        configurarEixoY(lineChart, entries)
+
+        lineChart.invalidate()
+    }
+
+    private fun criarEntradasGrafico(): List<Entry> {
         val entries = mutableListOf<Entry>()
-
         for (valorGrafico in viewModel.saldoPorMes.value!!) {
-            val xValue = valorGrafico.ano.toFloat() + valorGrafico.mes.toFloat() / 100 // combinação de ano e mês para o eixo X
-            val yValue = valorGrafico.valor.toFloat() // valor do eixo Y (valor)
-
+            val xValue = valorGrafico.ano.toFloat() + valorGrafico.mes.toFloat() / 100
+            val yValue = valorGrafico.valor.toFloat()
             val entry = Entry(xValue, yValue)
             entries.add(entry)
         }
+        return entries
+    }
 
-        // Criar um conjunto de dados (LineDataSet) e atribuir as entradas a ele
+    private fun criarDataSet(entries: List<Entry>): LineDataSet {
         val dataSet = LineDataSet(entries, "Valores Guardados")
-
-        val verde_bolinha_grafico = ContextCompat.getColor(requireContext(),
-            R.color.verde_grafico_inline
-        )
-
-        dataSet.color = verde_bolinha_grafico
+        val verdeBolinhaGrafico = ContextCompat.getColor(requireContext(), R.color.verde_grafico_inline)
+        dataSet.color = verdeBolinhaGrafico
         dataSet.valueTextColor = Color.BLACK
         dataSet.valueTextSize = 15f
         dataSet.setDrawFilled(true)
-        dataSet.fillColor = Color.parseColor("#4CAF50") // verde claro
-        dataSet.fillAlpha = 30 // opacidade de 0 a 255
+        dataSet.fillColor = Color.parseColor("#4CAF50")
+        dataSet.fillAlpha = 30
         dataSet.circleRadius = 8f
-        dataSet.circleHoleColor = verde_bolinha_grafico
-        dataSet.circleColors = mutableListOf(verde_bolinha_grafico)
+        dataSet.circleHoleColor = verdeBolinhaGrafico
+        dataSet.circleColors = mutableListOf(verdeBolinhaGrafico)
+        return dataSet
+    }
 
-        // Criar um objeto LineData e atribuir o conjunto de dados a ele
-        val lineData = LineData(dataSet)
-
-        // Configurar o LineChart com os dados e personalizações desejadas
+    private fun configurarLineChart(lineChart: LineChart, lineData: LineData) {
         lineChart.data = lineData
         lineChart.description.isEnabled = false
+        lineChart.legend.isEnabled = true
+    }
 
-        // Configurar o eixo X para exibir todos os rótulos
+    private fun configurarEixoX(lineChart: LineChart, entries: List<Entry>) {
         val xAxis = lineChart.xAxis
         val xLabels = mutableListOf<String>()
         for (valorGrafico in viewModel.saldoPorMes.value!!) {
             val mes = obterNomeMes(valorGrafico.mes)
-            xLabels.add("$mes ${valorGrafico.ano}")
+            xLabels.add("${valorGrafico.mes}/${valorGrafico.ano.toString().substring(2)}")
         }
         xAxis.valueFormatter = IndexAxisValueFormatter(xLabels.toTypedArray())
-
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
-//        xAxis.setAvoidFirstLastClipping(false)
-
-        //removendo grids no fundo do gráfico
-
-        val yAxisLeft = lineChart.axisLeft
-        yAxisLeft.setDrawGridLines(false)
-        yAxisLeft.setDrawAxisLine(false)
-
-        val yAxisRight = lineChart.axisRight
-        yAxisRight.setDrawGridLines(false)
-        yAxisRight.setDrawAxisLine(false)
-        //Fim removendo grid do fundo
-
-        // Ajustar a largura dos rótulos do eixo X
+        xAxis.setAvoidFirstLastClipping(false)
+        xAxis.granularity = 1f
+        xAxis.axisMinimum = entries.first().x
+        xAxis.axisMaximum = entries.last().x
         xAxis.labelRotationAngle = -45f
         xAxis.labelCount = entries.size
-
-        val yValues = entries.map { it.y } // Extrair os valores y de cada entrada
-        val minValue = yValues.minOrNull()?.minus(100f) ?: 0f // Valor mínimo, considerando que o mínimo seja 0 se não houver valores
-        val maxValue = (yValues.maxOrNull()?.plus(100f)) ?: 100f // Valor máximo, considerando que o máximo seja 100 se não houver valores
-
-        lineChart.axisLeft.axisMinimum = minValue
-        lineChart.axisLeft.axisMaximum = maxValue
-        lineChart.axisRight.isEnabled = false
-        lineChart.legend.isEnabled = true
-        lineChart.invalidate()
     }
+
+    private fun configurarEixoY(lineChart: LineChart, entries: List<Entry>) {
+        val yAxisLeft = lineChart.axisLeft
+        val yValues = entries.map { it.y }
+        val minValue = yValues.minOrNull()?.minus(100f) ?: 0f
+        val maxValue = (yValues.maxOrNull()?.plus(100f)) ?: 100f
+        yAxisLeft.axisMinimum = minValue
+        yAxisLeft.axisMaximum = maxValue
+        yAxisLeft.setDrawGridLines(false)
+        yAxisLeft.setDrawAxisLine(false)
+        lineChart.axisRight.isEnabled = false
+    }
+
 
     fun obterNomeMes(numeroMes: Int): String {
         return when (numeroMes) {
