@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Description
@@ -16,6 +17,13 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import models.Despesa
+import models.Receita
+import rest.Rest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import service.FinancasService
 
 class FragmentDashboardResumo : Fragment() {
 
@@ -23,12 +31,20 @@ class FragmentDashboardResumo : Fragment() {
     lateinit var dataSet: LineDataSet
     lateinit var lineData: LineData
 
+    private val retrofit = Rest.getInstance()
+
+    private var allDespesas = listOf<Despesa>()
+    private var allReceitas = listOf<Receita>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_dashboard_resumo, container, false)
+
+        getAllDespesasByIdUsuario(USUARIO.id ?: 0)
+        getAllReceitasByIdUsuario(USUARIO.id ?: 0)
 
         val tvSaldo = view.findViewById<TextView>(R.id.tv_saldo)
         val tvValorGuardadoEsteMes = view.findViewById<TextView>(R.id.tv_valor_guardado_mes)
@@ -120,6 +136,48 @@ class FragmentDashboardResumo : Fragment() {
             DinheiroGuardado(0.0, 8, 2022),
             )
 
+    }
+
+    private fun getAllDespesasByIdUsuario(idUsuario: Int) {
+        val despesaService = retrofit.create(FinancasService::class.java)
+        val call = despesaService.getAllDespesasById(idUsuario)
+
+        call.enqueue(object : Callback<List<Despesa>> {
+            override fun onResponse(
+                call: Call<List<Despesa>>,
+                response: Response<List<Despesa>>
+            ) {
+                if (response.isSuccessful){
+                    allDespesas = response.body() ?: listOf()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Despesa>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Erro ao carregar despesas", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+    }
+
+    private fun getAllReceitasByIdUsuario(idUsuario: Int) {
+        val receitaService = retrofit.create(FinancasService::class.java)
+        val call = receitaService.getAllReceitasById(idUsuario)
+
+        call.enqueue(object : Callback<List<Receita>> {
+            override fun onResponse(
+                call: Call<List<Receita>>,
+                response: Response<List<Receita>>
+            ) {
+                if (response.isSuccessful){
+                    allReceitas = response.body() ?: listOf()
+                }
+            }
+
+            override fun onFailure(call: Call<List<Receita>>, t: Throwable) {
+                Toast.makeText(requireContext(), "Erro ao carregar receitas", Toast.LENGTH_SHORT).show()
+            }
+
+        })
     }
 }
 
