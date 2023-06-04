@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.saveup.R
 import com.example.saveup.USUARIO
@@ -19,13 +18,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
-import models.Despesa
-import models.Receita
-import rest.Rest
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import service.FinancasService
 import java.util.Calendar
 
 class FragmentDashboardResumo : Fragment() {
@@ -51,15 +43,11 @@ class FragmentDashboardResumo : Fragment() {
         viewModel.getAllReceitasByIdUsuario(USUARIO.id ?: 0)
 
         viewModel.allReceitas.observe(viewLifecycleOwner){
-            calculaSaldo()
-            calculaSaldoDoMes()
-            setaValoresGuardadosPorMes()
+            reloadValues()
         }
 
         viewModel.allDespesas.observe(viewLifecycleOwner){
-            calculaSaldo()
-            calculaSaldoDoMes()
-//            setaValoresGuardadosPorMes()
+            reloadValues()
         }
 
         viewModel.saldoPorMes.observe(viewLifecycleOwner){
@@ -132,16 +120,22 @@ class FragmentDashboardResumo : Fragment() {
         return view
     }
 
-    fun getValorGuardadoPorMes():List<DinheiroGuardado>{
+    private fun reloadValues(){
+        calculaSaldo()
+        calculaSaldoDoMes()
+        setaValoresGuardadosPorMes()
+    }
+
+    fun getValorGuardadoPorMes():List<ValorGrafico>{
         return listOf(
-            DinheiroGuardado(100.0, 1, 2022),
-            DinheiroGuardado(200.0, 2, 2022),
-            DinheiroGuardado(300.0, 3, 2022),
-            DinheiroGuardado(500.0, 4, 2022),
-            DinheiroGuardado(200.0, 5, 2022),
-            DinheiroGuardado(300.0, 6, 2022),
-            DinheiroGuardado(250.0, 7, 2022),
-            DinheiroGuardado(0.0, 8, 2022),
+            ValorGrafico(100.0, 1, 2022),
+            ValorGrafico(200.0, 2, 2022),
+            ValorGrafico(300.0, 3, 2022),
+            ValorGrafico(500.0, 4, 2022),
+            ValorGrafico(200.0, 5, 2022),
+            ValorGrafico(300.0, 6, 2022),
+            ValorGrafico(250.0, 7, 2022),
+            ValorGrafico(0.0, 8, 2022),
         )
     }
 
@@ -191,4 +185,4 @@ class FragmentDashboardResumo : Fragment() {
 
 }
 
-data class DinheiroGuardado(val valor:Double, val mes:Int, val ano:Int)
+data class ValorGrafico(val valor:Double, val mes:Int, val ano:Int)

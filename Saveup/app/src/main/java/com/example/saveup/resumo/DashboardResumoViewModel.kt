@@ -18,7 +18,7 @@ class DashboardResumoViewModel: ViewModel() {
 
     val allDespesas: MutableLiveData<List<Despesa>> = MutableLiveData()
     val allReceitas: MutableLiveData<List<Receita>> = MutableLiveData()
-    val saldoPorMes: MutableLiveData<List<DinheiroGuardado>> = MutableLiveData()
+    val saldoPorMes: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
 
     fun getAllDespesasByIdUsuario(idUsuario: Int) {
         val despesaService = retrofit.create(FinancasService::class.java)
@@ -62,21 +62,14 @@ class DashboardResumoViewModel: ViewModel() {
         })
     }
 
-    fun criarDespesa(context: Context){
+    fun criarDespesa(
+        context: Context,
+        despesa: Despesa
+    ){
         val despesaService = retrofit.create(FinancasService::class.java)
         val call = despesaService.criaDespesa(
             id = USUARIO.id!!,
-            despesa = Despesa(
-                1,
-                "Uber",
-                "Uber",
-                20.0,
-                "2021-10-10",
-                "Uber",
-                5,
-                true,
-                USUARIO.id!!
-            )
+            despesa = despesa,
         )
 
         call.enqueue(object : Callback<Despesa> {
@@ -96,21 +89,14 @@ class DashboardResumoViewModel: ViewModel() {
         })
     }
 
-    fun criarReceita(context: Context){
+    fun criarReceita(
+        context: Context,
+        receita: Receita
+    ){
         val receitaService = retrofit.create(FinancasService::class.java)
         val call = receitaService.criaReceita(
-            id = 1,
-            receita = Receita(
-                1,
-                "Salário",
-                "Salário",
-                2000.0,
-                "2021-10-10",
-                "Salário",
-                5,
-                true,
-                1
-            )
+            id = USUARIO.id!!,
+            receita = receita,
         )
 
         call.enqueue(object : Callback<Receita> {
