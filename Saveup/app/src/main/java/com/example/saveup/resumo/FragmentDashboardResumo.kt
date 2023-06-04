@@ -163,10 +163,16 @@ class FragmentDashboardResumo : Fragment() {
 
         // Configurar o eixo X para exibir todos os rótulos
         val xAxis = lineChart.xAxis
-        xAxis.valueFormatter = IndexAxisValueFormatter(arrayOf("Jan", "Fev", "Mar", "Abr", "Mai"))
+        val xLabels = mutableListOf<String>()
+        for (valorGrafico in viewModel.saldoPorMes.value!!) {
+            val mes = obterNomeMes(valorGrafico.mes)
+            xLabels.add("$mes ${valorGrafico.ano}")
+        }
+        xAxis.valueFormatter = IndexAxisValueFormatter(xLabels.toTypedArray())
+
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
-        xAxis.setAvoidFirstLastClipping(false)
+//        xAxis.setAvoidFirstLastClipping(false)
 
         //removendo grids no fundo do gráfico
 
@@ -184,17 +190,34 @@ class FragmentDashboardResumo : Fragment() {
         xAxis.labelCount = entries.size
 
         val yValues = entries.map { it.y } // Extrair os valores y de cada entrada
-        val minValue = yValues.minOrNull() ?: 0f // Valor mínimo, considerando que o mínimo seja 0 se não houver valores
+        val minValue = yValues.minOrNull()?.minus(100f) ?: 0f // Valor mínimo, considerando que o mínimo seja 0 se não houver valores
         val maxValue = (yValues.maxOrNull()?.plus(100f)) ?: 100f // Valor máximo, considerando que o máximo seja 100 se não houver valores
 
         lineChart.axisLeft.axisMinimum = minValue
         lineChart.axisLeft.axisMaximum = maxValue
         lineChart.axisRight.isEnabled = false
-        lineChart.legend.isEnabled = false
+        lineChart.legend.isEnabled = true
         lineChart.invalidate()
-
-
     }
+
+    fun obterNomeMes(numeroMes: Int): String {
+        return when (numeroMes) {
+            1 -> "Jan"
+            2 -> "Fev"
+            3 -> "Mar"
+            4 -> "Abr"
+            5 -> "Mai"
+            6 -> "Jun"
+            7 -> "Jul"
+            8 -> "Ago"
+            9 -> "Set"
+            10 -> "Out"
+            11 -> "Nov"
+            12 -> "Dez"
+            else -> ""
+        }
+    }
+
 
 }
 
