@@ -130,9 +130,9 @@ class DashboardFragment : Fragment() {
         ourPieChart.invalidate()
 
         val dataList = listOf(
-            Categoria("Teste", "A", 20.0, "testeeee"),
-            Categoria("Teste", "B", 20.0, "testeeee"),
-            Categoria("Teste", "C", 20.0, "testeeee"),
+            Categoria("Teste", "A", "20.0", "testeeee"),
+            Categoria("Teste", "B", "20.0", "testeeee"),
+            Categoria("Teste", "C", "20.0", "testeeee"),
         )
 
         // Inicialize o Adapter com os dados desejados e defina-o no RecyclerView
@@ -149,7 +149,7 @@ class DashboardFragment : Fragment() {
 data class Categoria(
     val titulo: String,
     val Letra: String,
-    val valorCategoria: Double,
+    val valorCategoria: String,
     val descricao: String,
 )
 
@@ -160,21 +160,22 @@ class CategoriAdapter(
 
     inner class GraficoCategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         //FUNCAO QUE PEGA OS DADOS E TRANSFORMA NO GRAFICO DE OBJETIVO
-        fun bind(objetivo: Categoria){
-            val titulo = itemView.findViewById<TextView>(R.id.titulo)
-            val descricao = itemView.findViewById<TextView>(R.id.descricao)
-            val valorObjetivo = itemView.findViewById<TextView>(R.id.valorObjetivo)
-            val letraObjetivo = itemView.findViewById<TextView>(R.id.card_letra)
-            val grafico = itemView.findViewById<ProgressBar>(R.id.progress_circular)
+        fun bind(categoria: Categoria){
+            val titulo = itemView.findViewById<TextView>(R.id.txt_titulo)
+            val descricao = itemView.findViewById<TextView>(R.id.txt_descricao)
+            val letra = itemView.findViewById<TextView>(R.id.txt_letra)
+            val valorCategoria = itemView.findViewById<TextView>(R.id.txt_valor)
 
-            titulo.text = objetivo.titulo
-            descricao.text = objetivo.descricao
+            titulo.text = categoria.titulo
+            descricao.text = categoria.descricao
+            letra.text = categoria.Letra
+            valorCategoria.text = categoria.valorCategoria
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraficoCategoriaViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_deposito_objetivo, parent, false)
+        val view = inflater.inflate(R.layout.item_dashboard_categoria, parent, false)
         return GraficoCategoriaViewHolder(view)
     }
 
