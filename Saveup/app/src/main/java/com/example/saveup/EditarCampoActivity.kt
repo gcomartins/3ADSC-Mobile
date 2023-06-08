@@ -10,11 +10,19 @@ class EditarCampoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_editar_campo)
 
         val atributo = intent.getStringExtra("atributo")
+        val valor = intent.getStringExtra("valor")
 
         val campoAntigo = findViewById<TextView>(R.id.tvCampoAntigo)
         campoAntigo.text = "$atributo antigo"
 
+        val etCampoAntigo = findViewById<TextView>(R.id.etCampoAntigo)
+        etCampoAntigo.text = "$valor"
+        etCampoAntigo.isEnabled = false
+
         val campoNovo = findViewById<TextView>(R.id.tvCampoNovo)
         campoNovo.text = "$atributo novo"
+
+        val etCampoNovo = findViewById<TextView>(R.id.etCampoNovo)
+        etCampoNovo.hint = "Digite o novo $atributo"
     }
 }

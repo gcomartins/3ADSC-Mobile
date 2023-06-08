@@ -83,6 +83,7 @@ private class MeusDadosAdapter(
             editIcon.setOnClickListener {
                 val intent = Intent(context, EditarCampoActivity::class.java).apply {
                     putExtra("atributo", dado.atributo)
+                    putExtra("valor", dado.valor)
                 }
                 context.startActivity(intent)
             }
