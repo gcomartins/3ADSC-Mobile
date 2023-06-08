@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="categorias_principais">
+        <item>Alimentação</item>
+        <item>Moradia</item>
+        <item>Transporte</item>
+        <item>Saúde</item>
+        <item>Educação</item>
+        <item>Entretenimento</item>
+        <item>Vestuário</item>
+        <item>Viagens</item>
+        <item>Impostos</item>
+        <item>Investimentos</item>
+        <item>Dívidas</item>
+        <item>Doações</item>
+        <item>Outros</item>
+    </array>
+</resources>

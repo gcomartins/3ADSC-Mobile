@@ -1,15 +1,11 @@
 package com.example.saveup
 
-import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.saveup.databinding.ActivityTelaPrincipalBinding
-import com.example.saveup.resumo.CriarObjetivoActivity
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class TelaPrincipalActivity : AppCompatActivity() {
     private val binding by lazy {

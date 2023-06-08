@@ -16,7 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".resumo.CriarObjetivoActivity"
+            android:name=".CriarObjetivoActivity"
             android:exported="false" />
         <activity
             android:name=".ObjetivoExpandidoActivity"
