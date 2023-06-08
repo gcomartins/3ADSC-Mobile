@@ -84,6 +84,7 @@ private class MeusDadosAdapter(
                 val intent = Intent(context, EditarCampoActivity::class.java).apply {
                     putExtra("atributo", dado.atributo)
                     putExtra("valor", dado.valor)
+                    putExtra("isObscured", dado.isObscured)
                 }
                 context.startActivity(intent)
             }

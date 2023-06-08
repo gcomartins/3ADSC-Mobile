@@ -11,13 +11,18 @@ class EditarCampoActivity : AppCompatActivity() {
 
         val atributo = intent.getStringExtra("atributo")
         val valor = intent.getStringExtra("valor")
+        val isObscured = intent.getBooleanExtra("isObscured", false)
 
         val campoAntigo = findViewById<TextView>(R.id.tvCampoAntigo)
         campoAntigo.text = "$atributo antigo"
 
+
         val etCampoAntigo = findViewById<TextView>(R.id.etCampoAntigo)
         etCampoAntigo.text = "$valor"
         etCampoAntigo.isEnabled = false
+        if(isObscured) {
+            etCampoAntigo.inputType = 129 // 129 = textPassword
+        }
 
         val campoNovo = findViewById<TextView>(R.id.tvCampoNovo)
         campoNovo.text = "$atributo novo"
