@@ -2,7 +2,6 @@ package service
 
 import models.Despesa
 import models.Receita
-import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -22,12 +21,11 @@ import retrofit2.http.Path
      @GET("/usuarios/historicoDespesasMensal/{id}")
      fun getDespesasMensalById(@Path("id") id: Int): retrofit2.Call<List<Despesa>>
 
-     @POST("/despesas/{id}")
+     @POST("/despesas/{idUsuario}")
      fun criaDespesa(
-         @Path("id") id: Int,
+         @Path("idUsuario")  id: Int,
          @Body despesa: Despesa
      ): retrofit2.Call<Despesa>
-
      @POST("/receitas/{id}")
      fun criaReceita(
          @Path("id") id: Int,
