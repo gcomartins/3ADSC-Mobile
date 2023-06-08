@@ -29,13 +29,10 @@ class MeusDadosFragment : Fragment() {
 
         val recyclerView: RecyclerView = view.findViewById<RecyclerView>(R.id.rvMeusDados)
         val dataList = listOf(
-            DadoDoUsuario("Nome", USUARIO.nome ?: "nome Usuario"),
-            DadoDoUsuario("E-mail", USUARIO.email ?: "Email do usuario"),
-            DadoDoUsuario("Senha", USUARIO.senha ?: "Senha do usuario"),
-            DadoDoUsuario(
-                "Data de Nascimento",
-                USUARIO.dataNascimento ?: "data de nascimento usuario"
-            )
+            DadoDoUsuario("Nome", USUARIO.nome ?: "-"),
+            DadoDoUsuario("E-mail", USUARIO.email ?: "-"),
+            DadoDoUsuario("Senha", USUARIO.senha ?: "-", true),
+            DadoDoUsuario("Data de Nascimento",USUARIO.dataNascimento ?: "-")
         )
         val linearLayoutManager = LinearLayoutManager(context)
         recyclerView.layoutManager = linearLayoutManager
@@ -67,7 +64,8 @@ class MeusDadosFragment : Fragment() {
 
     private data class DadoDoUsuario(
     val atributo: String,
-    val valor: String
+    val valor: String,
+    val isObscured: Boolean = false
 )
 
 private class MeusDadosAdapter(
@@ -88,6 +86,8 @@ private class MeusDadosAdapter(
                 }
                 context.startActivity(intent)
             }
+
+            if(dado.isObscured) campo.inputType = 129 // 129 = password
         }
     }
 
