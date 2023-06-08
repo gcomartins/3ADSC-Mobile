@@ -15,46 +15,23 @@
         android:layout_height="350dp"
         />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
 
-        >
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/white"
-            >
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:backgroundTint="@color/white_ice"
                 >
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="4"
                     tools:itemCount="4"
                     tools:listitem="@layout/item_dashboard_categoria" />
-
-
             </LinearLayout>
-        </FrameLayout>
-
-
-    </ScrollView>
-
-
-    <TextView
-        android:id="@+id/info_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
 
 </LinearLayout>
