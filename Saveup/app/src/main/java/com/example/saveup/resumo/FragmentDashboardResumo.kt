@@ -143,7 +143,7 @@ class FragmentDashboardResumo : Fragment() {
     }
 
     private fun criarDataSet(entries: List<Entry>): LineDataSet {
-        val dataSet = LineDataSet(entries, "Valores Guardados")
+        val dataSet = LineDataSet(entries, "Saldo por mes")
         val verdeBolinhaGrafico = ContextCompat.getColor(requireContext(), R.color.verde_grafico_inline)
         dataSet.color = verdeBolinhaGrafico
         dataSet.valueTextColor = Color.BLACK
@@ -168,13 +168,14 @@ class FragmentDashboardResumo : Fragment() {
         val xLabels = mutableListOf<String>()
         for (valorGrafico in viewModel.saldoPorMes.value!!) {
             val mes = obterNomeMes(valorGrafico.mes)
-            xLabels.add("${valorGrafico.mes}/${valorGrafico.ano.toString().substring(2)}")
+            xLabels.add("$mes/${valorGrafico.ano.toString().substring(2)}")
         }
+        xAxis.labelCount = 6
         xAxis.valueFormatter = IndexAxisValueFormatter(xLabels.toTypedArray())
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
-        xAxis.setAvoidFirstLastClipping(false)
-        xAxis.granularity = 1f
+        xAxis.setAvoidFirstLastClipping(true)
+//        xAxis.granularity = 1f
         xAxis.axisMinimum = entries.first().x
         xAxis.axisMaximum = entries.last().x
         xAxis.labelRotationAngle = -45f

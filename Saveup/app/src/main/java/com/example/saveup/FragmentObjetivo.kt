@@ -40,6 +40,8 @@ class FragmentObjetivo : Fragment() {
         // Inicialize o Adapter com os dados desejados e defina-o no RecyclerView
         // O adapter que vai pegar os dados e transformar no grafico de objetivo
         meuAdapter = ObjetivoAdapter(dataList, requireContext())
+        val linearLayoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = meuAdapter
 
         return view
