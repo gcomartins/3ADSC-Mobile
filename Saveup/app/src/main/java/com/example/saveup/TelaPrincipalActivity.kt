@@ -8,11 +8,11 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.saveup.databinding.ActivityTelaPrincipalBinding
+import com.example.saveup.resumo.CriarObjetivoActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class TelaPrincipalActivity : AppCompatActivity() {
     private val binding by lazy {
-        println(layoutInflater)
         ActivityTelaPrincipalBinding.inflate(layoutInflater)
     }
 
@@ -27,20 +27,25 @@ class TelaPrincipalActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.bottomNavigation.setupWithNavController(navController)
 
-        val fragmentContainer = findViewById<FragmentContainerView>(R.id.fragmentContainerView)
-
-        val fab: FloatingActionButton = findViewById(R.id.fab)
-        fab.setOnClickListener {
-            intent = Intent(this, NovaDespesa::class.java)
-            startActivity(intent)
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.fragment3) {
+                binding.fab.setImageResource(R.drawable.add_objetivo_icon)
+            } else {
+                binding.fab.setImageResource(R.drawable.add_icon)
+            }
         }
 
+        binding.fab.setOnClickListener {
+            val currentDestinationId = navController.currentDestination?.id
+            if (currentDestinationId == R.id.fragment3) {
+                val intent = Intent(this, CriarObjetivoActivity::class.java)
+                startActivity(intent)
+            } else {
+                intent = Intent(this, NovaDespesa::class.java)
+                startActivity(intent)
+            }
+        }
 
-//        val meuFragment = FragmentObjetivo()
-//
-//        supportFragmentManager.beginTransaction()
-//            .replace(R.id.fragmentContainerView, meuFragment)
-//            .commit()
 
     }
 }
