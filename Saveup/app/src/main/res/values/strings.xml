@@ -68,5 +68,6 @@
     <string name="fab">FAB</string>
     <string name="quantidade_de_parcelas">Quantidade de parcelas</string>
     <string name="est_paga">Está paga</string>
-    <string name="data_da_despesa">Data da Despesa</string>
+    <string name="data_da_despesa">Data</string>
+    <string name="nova_despesa">Nova Despesa</string>
 </resources>

@@ -1,15 +1,14 @@
 package models
 
-data class Despesa(
+data class Financa(
     val nome: String,
     val descricao: String,
     val valor: Double,
     val data: String,
     val categoria: String,
-    val qtdParcelas: Int,
     val fkUsuario: Int
 )
-data class DespesaCriacao(
+data class FinancaCriacao(
     val nome: String,
     val descricao: String,
     val valor: Double,

@@ -22,9 +22,10 @@
         />
 
     <TextView
+        android:id="@+id/tvHeader"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/nova_receita"
+        android:text="@string/nova_despesa"
         android:textSize="26sp"
         android:textColor="@color/white"
         android:gravity="center"

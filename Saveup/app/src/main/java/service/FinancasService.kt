@@ -15,20 +15,21 @@ import retrofit2.http.Path
      @GET("/receitas/{id}")
      fun getAllReceitasById(@Path("id") id: Int): retrofit2.Call<List<Receita>>
 
-    @GET("/usuarios/historicoReceitasMensal/{id}")
-    fun getReceitasMensalById(@Path("id") id: Int): retrofit2.Call<List<Receita>>
+     @GET("/usuarios/historicoReceitasMensal/{id}")
+     fun getReceitasMensalById(@Path("id") id: Int): retrofit2.Call<List<Receita>>
 
      @GET("/usuarios/historicoDespesasMensal/{id}")
      fun getDespesasMensalById(@Path("id") id: Int): retrofit2.Call<List<Despesa>>
 
      @POST("/despesas/{idUsuario}")
      fun criaDespesa(
-         @Path("idUsuario")  id: Int,
+         @Path("idUsuario") idUsuario: Int,
          @Body despesa: Despesa
      ): retrofit2.Call<Despesa>
+
      @POST("/receitas/{id}")
      fun criaReceita(
          @Path("id") id: Int,
          @Body receita: Receita
      ): retrofit2.Call<Receita>
-}
+ }
