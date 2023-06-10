@@ -45,20 +45,36 @@ class DashboardFragment : Fragment() {
 
         viewModel.getDespesasList()
 
-        val mapColors = mapOf(
-            "Alimentação" to R.color.yellow_dahsboard,
-            "Educação" to R.color.pink_dashboard,
-            "Lazer" to R.color.blue_bold_dashboard,
-            "Moradia" to R.color.orange_dashboard,
-            "Transporte" to R.color.teal_200,
-            "Alimentos" to R.color.yellow_dahsboard,
-            "Categoriazinha" to R.color.pink_dashboard,
-            "Viagens" to R.color.blue_bold_dashboard,
-            "Moradia" to R.color.orange_dashboard,
+//        val mapColors = mapOf(
+//            "Alimentação" to R.color.yellow_dahsboard,
+//            "Educação" to R.color.pink_dashboard,
+//            "Lazer" to R.color.blue_bold_dashboard,
+//            "Moradia" to R.color.orange_dashboard,
+//            "Transporte" to R.color.teal_200,
+//            "Alimentos" to R.color.yellow_dahsboard,
+//            "Categoriazinha" to R.color.pink_dashboard,
+//            "Viagens" to R.color.blue_bold_dashboard,
+//            "Moradia" to R.color.orange_dashboard,
+//        )
 
-        )
+        val mapColors = emptyMap<String, Int>().toMutableMap()
+        val colors: ArrayList<Int> = ArrayList()
+        colors.add(resources.getColor(R.color.yellow_dahsboard))
+        colors.add(resources.getColor(R.color.pink_dashboard))
+        colors.add(resources.getColor(R.color.blue_bold_dashboard))
+        colors.add(resources.getColor(R.color.orange_dashboard))
+        colors.add(resources.getColor(R.color.teal_200))
 
         viewModel.despesasList.observe(viewLifecycleOwner){
+
+            var indexCor = 0
+            it.forEach {
+                if(!mapColors.containsKey(it.categoria)){
+                    mapColors[it.categoria] = colors[indexCor]
+                    indexCor++
+                }
+            }
+
             val dataList = it
             meuAdapter = DespesaAdapter(ordenarDespesasPorData(dataList), requireContext(), mapColors)
             recyclerView.adapter = meuAdapter
@@ -104,12 +120,6 @@ class DashboardFragment : Fragment() {
         ourPieChart.setTransparentCircleRadius(1f)
         ourPieChart.contentDescription = "Valores em %"
 
-        val colors: ArrayList<Int> = ArrayList()
-        colors.add(resources.getColor(R.color.yellow_dahsboard))
-        colors.add(resources.getColor(R.color.pink_dashboard))
-        colors.add(resources.getColor(R.color.blue_bold_dashboard))
-        colors.add(resources.getColor(R.color.orange_dashboard))
-        colors.add(resources.getColor(R.color.teal_200))
 
         viewModel.despesasGrafico.observe(viewLifecycleOwner) { mapResponse ->
             val entries = convertToPieEntries(mapResponse)
@@ -177,7 +187,7 @@ class DespesaAdapter(
             letra.backgroundTintList = ColorStateList.valueOf(mapColors[despesa.categoria] ?: R.color.pink_dashboard)
 
             titulo.text = despesa.nome
-            descricao.text = despesa.descricao
+            descricao.text = despesa.categoria
             letra.text = despesa.nome[0].toString().uppercase(Locale.getDefault())
             valor.text = "R$${despesa.valor}"
 
