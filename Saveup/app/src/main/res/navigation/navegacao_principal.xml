@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/fragment3"
-        android:name="com.example.saveup.FragmentObjetivo"
+        android:name="com.example.saveup.objetivo.FragmentObjetivo"
         android:label="fragment_objetivo"
         tools:layout="@layout/fragment_objetivo">
         <action
