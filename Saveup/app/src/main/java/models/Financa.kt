@@ -1,6 +1,7 @@
 package models
 
 data class Financa(
+    val codigo: Int?,
     val nome: String,
     val descricao: String,
     val valor: Double,

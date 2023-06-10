@@ -105,12 +105,13 @@ class NovaDespesa : AppCompatActivity() {
         if (financa != null) {
                 isDespesaValue(
                     Financa(
-                        financa.nome,
-                        financa.descricao,
-                        financa.valor,
-                        financa.data,
-                        financa.categoria,
-                        USUARIO.id!!
+                        nome = financa.nome,
+                        descricao = financa.descricao,
+                        valor = financa.valor,
+                        data = financa.data,
+                        categoria = financa.categoria,
+                        fkUsuario = USUARIO.id!!,
+                        codigo = null,
                     )
                 )
             }
@@ -164,26 +165,28 @@ class NovaDespesa : AppCompatActivity() {
         if (isReceita) {
             cadastrarReceita(
                 Receita(
-                    financa.nome,
-                    financa.descricao,
-                    financa.valor,
-                    formatarData(),
-                    financa.categoria,
-                    USUARIO.id!!,
-                    1
+                    nome = financa.nome,
+                    descricao = financa.descricao,
+                    valor = financa.valor,
+                    data = formatarData(),
+                    categoria = financa.categoria,
+                    fkUsuario = USUARIO.id!!,
+                    frequencia = 1,
+                    codigo = null
                 )
             )
         }
         else {
             cadastrarDespesa(
                 Despesa(
-                    financa.nome,
-                    financa.descricao,
-                    financa.valor,
-                    formatarData(),
-                    financa.categoria,
-                    1,
-                    USUARIO.id!!
+                    nome = financa.nome,
+                    descricao = financa.descricao,
+                    valor = financa.valor,
+                    data = formatarData(),
+                    categoria = financa.categoria,
+                    qtdParcelas = 1,
+                    fkUsuario = USUARIO.id!!,
+                    codigo = null
                 )
             )
         }

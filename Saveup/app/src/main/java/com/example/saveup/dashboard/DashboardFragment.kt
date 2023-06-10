@@ -1,6 +1,7 @@
 package com.example.saveup.dashboard
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -9,9 +10,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.saveup.EditarDespesaActivity
 import com.example.saveup.R
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
@@ -144,6 +147,7 @@ class DespesaAdapter(
     inner class GraficoCategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         //FUNCAO QUE PEGA OS DADOS E TRANSFORMA NO GRAFICO DE OBJETIVO
         fun bind(despesa: Despesa){
+            val item = itemView.findViewById<ConstraintLayout>(R.id.clItemDespesa)
             val titulo = itemView.findViewById<TextView>(R.id.tvTitulo)
             val descricao = itemView.findViewById<TextView>(R.id.tvDescricao)
             val letra = itemView.findViewById<TextView>(R.id.tvLetra)
@@ -153,6 +157,17 @@ class DespesaAdapter(
             descricao.text = despesa.descricao
             letra.text = despesa.nome[0].toString().uppercase(Locale.getDefault())
             valor.text = "R$${despesa.valor}"
+
+            item.setOnClickListener{
+                val intent = Intent(context, EditarDespesaActivity::class.java).apply {
+                    putExtra("nome", despesa.nome)
+                    putExtra("descricao", despesa.descricao)
+                    putExtra("valor", despesa.valor)
+                    putExtra("data", despesa.data)
+                    putExtra("id", despesa.codigo)
+                }
+                context.startActivity(intent)
+            }
         }
     }
 
