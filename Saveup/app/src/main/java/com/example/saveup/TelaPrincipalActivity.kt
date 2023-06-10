@@ -1,16 +1,19 @@
 package com.example.saveup
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.saveup.databinding.ActivityTelaPrincipalBinding
+import rest.Rest
 
 class TelaPrincipalActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityTelaPrincipalBinding.inflate(layoutInflater)
     }
+    private val retrofit = Rest.getInstance()
+
 
     private val navController by lazy {
         (supportFragmentManager
@@ -41,6 +44,7 @@ class TelaPrincipalActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         }
+
 
 
     }

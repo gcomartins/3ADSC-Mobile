@@ -126,7 +126,6 @@ class NovaDespesa : AppCompatActivity() {
         val partes = etData.text.toString().split("/")
         val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
         return dataFormatada
-
     }
 
     fun checkAll(): FinancaCriacao?{

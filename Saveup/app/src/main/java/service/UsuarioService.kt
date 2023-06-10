@@ -20,4 +20,10 @@ interface UsuarioService {
     fun login(
         @Path("email") email: String, @Path("senha") senha: String
     ): Call<Usuario>
+    @PUT("/usuarios/{senhaAntiga}/{emailAntigo}")
+    fun atualizarUsuario(
+        @Path("senhaAntiga") senhaAntiga: String,
+        @Path("emailAntigo") emailAntigo: String,
+        @Body UsuarioAtualizado: UsuarioCadastro
+    ): Call<UsuarioCadastro>
 }
