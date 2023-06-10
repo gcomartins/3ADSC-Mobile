@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import service.FinancasService
+import java.util.Calendar
 
 class EditarDespesaActivity : AppCompatActivity() {
     val retrofit = Rest.getInstance()
@@ -25,12 +26,14 @@ class EditarDespesaActivity : AppCompatActivity() {
     val tvValor by lazy { binding.tvValor }
     val etValor by lazy { binding.editValor }
     val tvData by lazy { binding.textViewData }
-    val etData by lazy { binding.editData }
+    val datePicker by lazy { binding.datePicker }
     val tvCategoria by lazy { binding.tvCategoria }
     val spinnerCategoria by lazy { binding.spinnerCategoria }
 
     val btnSalvar by lazy { binding.btnSalvar }
     val btnExcluir by lazy { binding.btnExcluir }
+
+    var dataSelecionada = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +57,34 @@ class EditarDespesaActivity : AppCompatActivity() {
         etNome.text = Editable.Factory.getInstance().newEditable(nome)
         etValor.text = Editable.Factory.getInstance().newEditable(valor.toString())
         etDescricao.text = Editable.Factory.getInstance().newEditable(descricao)
-        etData.text = Editable.Factory.getInstance().newEditable(data)
+
+        // Defina a data inicial
+        val initialYear = data?.substring(0, 4)?.toInt()
+        val initialMonth = data?.substring(5, 7)?.toInt()?.minus(1)
+        val initialDay = data?.substring(8, 10)?.toInt()
+
+        // Data de hoje
+        val today = Calendar.getInstance()
+        val todayYear = today.get(Calendar.YEAR)
+        val todayMonth = today.get(Calendar.MONTH)
+        val todayDay = today.get(Calendar.DAY_OF_MONTH)
+
+        datePicker.init(datePicker.year, datePicker.month, datePicker.dayOfMonth) { view, year, monthOfYear, dayOfMonth ->
+            // Aqui você pode capturar a data selecionada e fazer o que precisar com ela
+
+            // Formate os números abaixo de 10 com zero à esquerda
+            val dayFormatted = String.format("%02d", dayOfMonth)
+            val monthFormatted = String.format("%02d", monthOfYear + 1)
+            val yearFormatted = String.format("%02d", year)
+
+            dataSelecionada = "$dayFormatted/$monthFormatted/$yearFormatted"
+        }
+
+        datePicker.updateDate(
+            initialYear ?: todayYear,
+            initialMonth ?: todayMonth,
+            initialDay ?: todayDay
+        )
 
         btnSalvar.setOnClickListener {
             atualizarDespesaById(id)
@@ -97,7 +127,7 @@ class EditarDespesaActivity : AppCompatActivity() {
             nome = etNome.text.toString(),
             valor = etValor.text.toString().toDouble(),
             categoria = spinnerCategoria.selectedItem.toString(),
-            data = etData.text.toString(),
+            data = formatarData(),
             descricao = etDescricao.text.toString(),
             qtdParcelas = 1,
             fkUsuario = USUARIO.id!!,
@@ -125,5 +155,12 @@ class EditarDespesaActivity : AppCompatActivity() {
                 ).show()
             }
         })
+    }
+
+    private fun formatarData(): String {
+        val partes = dataSelecionada.split("/")
+        val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
+        return dataFormatada
+
     }
 }
