@@ -71,9 +71,11 @@ class DashboardFragment : Fragment() {
 
         ourPieChart.setBackgroundColor(color)
 
-        ourPieChart.setUsePercentValues(true)
-        ourPieChart.getDescription().setEnabled(true)
+        ourPieChart.setUsePercentValues(false)
+        ourPieChart.getDescription().setEnabled(false)
         ourPieChart.setExtraOffsets(5f, 10f, 5f, 5f)
+
+        ourPieChart.legend.setDrawInside(true)
 
         ourPieChart.setDragDecelerationFrictionCoef(0.95f)
 
@@ -86,7 +88,7 @@ class DashboardFragment : Fragment() {
         ourPieChart.setHoleRadius(58f)
         ourPieChart.setTransparentCircleRadius(61f)
 
-        ourPieChart.setDrawCenterText(true)
+        ourPieChart.setDrawCenterText(false)
 
         ourPieChart.setRotationAngle(0f)
 
@@ -98,7 +100,7 @@ class DashboardFragment : Fragment() {
         ourPieChart.legend.isEnabled = true
         ourPieChart.setEntryLabelColor(Color.WHITE)
         ourPieChart.setEntryLabelTextSize(12f)
-        ourPieChart.setHoleRadius(1f)
+        ourPieChart.setHoleRadius(0f)
         ourPieChart.setTransparentCircleRadius(1f)
         ourPieChart.contentDescription = "Valores em %"
 
@@ -116,7 +118,6 @@ class DashboardFragment : Fragment() {
             dataSet.sliceSpace = 0f
             dataSet.iconsOffset = MPPointF(0f, 40f)
             dataSet.selectionShift = 5f
-
 
             dataSet.colors = colors
 
@@ -146,7 +147,7 @@ class DashboardFragment : Fragment() {
         val pieEntries = ArrayList<PieEntry>()
 
         for ((categoria, valor) in map) {
-            val pieEntry = PieEntry(valor.toFloat())
+            val pieEntry = PieEntry(valor.toFloat(), categoria)
             pieEntries.add(pieEntry)
         }
 
