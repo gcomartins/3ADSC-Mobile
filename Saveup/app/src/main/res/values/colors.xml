@@ -26,5 +26,6 @@
     <color name="orange_dashboard">#FF8A48</color>
     <color name="yellow_dahsboard">#FFE248</color>
     <color name="blue_bold_dashboard">#256DA0</color>
+    <color name="blue_claro">#9AD5FF</color>
     <color name="white_ice">#FFFAFA</color>
 </resources>

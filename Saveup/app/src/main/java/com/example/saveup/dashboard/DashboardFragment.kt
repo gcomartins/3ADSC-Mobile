@@ -59,11 +59,11 @@ class DashboardFragment : Fragment() {
 
         val mapColors = emptyMap<String, Int>().toMutableMap()
         val colors: ArrayList<Int> = ArrayList()
+        colors.add(resources.getColor(R.color.blue_claro))
         colors.add(resources.getColor(R.color.yellow_dahsboard))
         colors.add(resources.getColor(R.color.pink_dashboard))
-        colors.add(resources.getColor(R.color.blue_bold_dashboard))
         colors.add(resources.getColor(R.color.orange_dashboard))
-        colors.add(resources.getColor(R.color.teal_200))
+        colors.add(resources.getColor(R.color.blue_bold_dashboard))
 
         viewModel.despesasList.observe(viewLifecycleOwner){
 
