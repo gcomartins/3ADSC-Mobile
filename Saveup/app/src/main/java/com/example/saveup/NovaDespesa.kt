@@ -134,11 +134,11 @@ class NovaDespesa : AppCompatActivity() {
         return financa
     }
 
-    private fun formatarData(): String {
-        val partes = dataSelecionada.split("/")
-        val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
-        return dataFormatada
-    }
+//    private fun formatarData(): String {
+//        val partes = dataSelecionada.split("/")
+//        val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
+//        return dataFormatada
+//    }
 
     fun checkAll(): FinancaCriacao?{
         var isChecked: Boolean = true
@@ -175,7 +175,7 @@ class NovaDespesa : AppCompatActivity() {
                     nome = financa.nome,
                     descricao = financa.descricao,
                     valor = financa.valor,
-                    data = formatarData(),
+                    data = dataSelecionada,
                     categoria = financa.categoria,
                     fkUsuario = USUARIO.id!!,
                     frequencia = 1,
@@ -189,7 +189,7 @@ class NovaDespesa : AppCompatActivity() {
                     nome = financa.nome,
                     descricao = financa.descricao,
                     valor = financa.valor,
-                    data = formatarData(),
+                    data = dataSelecionada,
                     categoria = financa.categoria,
                     qtdParcelas = 1,
                     fkUsuario = USUARIO.id!!,
