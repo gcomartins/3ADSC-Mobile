@@ -1,11 +1,13 @@
 package models
 
-data class Receita(
+data class Objetivo(
+    val id : Int,
     val nome: String,
     val descricao: String,
     val valor: Double,
     val data: String,
     val categoria: String,
-    val fkUsuario: Int,
-    val  frequencia: Int,
+    val valorAtual: Double,
+    val dataFinal: String,
+    val fkUsuario: Int
 )

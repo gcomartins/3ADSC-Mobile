@@ -1,4 +1,4 @@
-package models
+    package models
 
 import java.util.*
 
@@ -11,6 +11,7 @@ data class Usuario(
     val cpf: String,
 )
 data class UsuarioCadastro(
+    val id : Int,
     val email: String,
     val nome: String,
     val senha: String,

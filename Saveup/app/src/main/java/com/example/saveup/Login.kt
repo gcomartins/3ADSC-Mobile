@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
+import android.text.Editable
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.saveup.databinding.ActivityLoginBinding
@@ -24,6 +25,9 @@ class Login : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        binding.etEmailLogin.text = Editable.Factory.getInstance().newEditable("guilherme.teste@email.com")
+        binding.etSenhaLogin.text = Editable.Factory.getInstance().newEditable("Senha@123")
 
         binding.btSignIn.setOnClickListener {
             login()

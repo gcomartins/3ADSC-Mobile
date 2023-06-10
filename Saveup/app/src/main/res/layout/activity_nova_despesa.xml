@@ -5,7 +5,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".NovaDespesa">
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,7 +13,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             >
-            <include layout="@layout/app_bar_receita" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -22,93 +20,113 @@
                 android:layout_marginVertical="80dp"
                 android:layout_marginStart="19dp"
                 android:layout_marginEnd="20dp"
-                android:orientation="vertical"
-                >
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
                     android:text="@string/titulo"
                     android:textColor="@color/primary"
-                    android:textSize ="20sp"
-                    android:layout_marginStart="1dp"
-                    />
+                    android:textSize="20sp" />
+
                 <EditText
                     android:id="@+id/titulo"
-                    android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#E9F1E7"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/input_shape"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
                     android:paddingHorizontal="7dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/descricao"
                     android:textColor="@color/primary"
-                    android:textSize="20sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="1dp"
-                    />
+                    android:textSize="20sp" />
+
                 <EditText
                     android:id="@+id/descricao"
-                    android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#E9F1E7"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/input_shape"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
                     android:paddingHorizontal="2dp"
-                    android:textColorHint="@color/grey"
-                    />
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="16dp"
                     android:text="@string/categoria"
                     android:textColor="@color/primary"
-                    android:textSize="20sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginStart="1dp"
-                    />
+                    android:textSize="20sp" />
+
                 <EditText
                     android:id="@+id/categoria"
-                    android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#E9F1E7"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/input_shape"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
                     android:paddingHorizontal="2dp"
+                    android:paddingVertical="16dp"
+                    android:textColorHint="@color/grey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="1dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/valor"
+                    android:textColor="@color/primary"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/valor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:background="@drawable/input_shape"
+                    android:backgroundTint="#E9F1E7"
+                    android:paddingHorizontal="2dp"
+                    android:paddingVertical="16dp"
                     android:textColorHint="@color/grey"
+                    android:inputType="numberDecimal"
                     />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/valor"
-                    android:textColor="@color/primary"
-                    android:textSize="20sp"
-                    android:layout_marginTop="16dp"
                     android:layout_marginStart="1dp"
-                    />
+                    android:layout_marginTop="16dp"
+                    android:text="@string/data_da_despesa"
+                    android:textColor="@color/primary"
+                    android:textSize="20sp" />
                 <EditText
-                    android:id="@+id/valor"
-                    android:layout_marginTop="3dp"
+                    android:id="@+id/data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#E9F1E7"
+                    android:layout_marginTop="3dp"
                     android:background="@drawable/input_shape"
-                    android:paddingVertical="16dp"
+                    android:backgroundTint="#E9F1E7"
                     android:paddingHorizontal="2dp"
+                    android:paddingVertical="16dp"
                     android:textColorHint="@color/grey"
+                    android:inputType="date"
                     />
 
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -116,21 +134,28 @@
                 android:layout_marginEnd="20sp"
                 android:orientation="vertical"
                 >
-                <Button
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/adicionar_gasto"
-                    android:textSize="12dp"
-                    android:backgroundTint="@color/red"
-                    />
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/cancelar"
-                    android:textColor="@color/primary"
-                    android:textSize="12dp"
-                    android:backgroundTint="@color/white"
-                    />
+                    android:layout_height="wrap_content">
+                    <Button
+                        android:id="@+id/adicionar"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:text="@string/adicionar_gasto"
+                        android:textSize="12dp"
+                        android:backgroundTint="@color/red"
+                        />
+                    <Switch
+                        style="@style/RedSwitch"
+                        android:id="@+id/switchButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="false"
+                        android:layout_gravity="center"
+                        android:textColor="@color/primary"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
 
 

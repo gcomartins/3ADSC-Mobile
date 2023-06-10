@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="RedSwitch">
+        <item name="thumbTint">@color/red</item>
+        <item name="trackTint">@color/red</item>
+    </style>
+    <style name="WhiteSwitch">
+        <item name="thumbTint">@color/cinza</item>
+        <item name="trackTint">@color/verd_switch</item>
+    </style>
+
+
+</resources>

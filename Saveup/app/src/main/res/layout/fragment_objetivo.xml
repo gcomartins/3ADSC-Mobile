@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentObjetivo">
+    tools:context=".objetivo.FragmentObjetivo">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,22 +16,12 @@
             android:layout_width="match_parent"
             android:layout_height="680dp"
             android:gravity="center">
-            <HorizontalScrollView
-                android:layout_width="380dp"
-                android:layout_height="600dp"
-                >
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="4"
-                    tools:itemCount="4"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:listitem="@layout/item_deposito_objetivo" />
-
-            </HorizontalScrollView>
-
-
         </LinearLayout>
 
     </LinearLayout>
