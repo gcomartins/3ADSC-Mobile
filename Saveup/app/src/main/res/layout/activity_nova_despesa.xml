@@ -111,19 +111,14 @@
                     android:text="@string/data_da_despesa"
                     android:textColor="@color/primary"
                     android:textSize="20sp" />
-                <EditText
-                    android:id="@+id/data"
+                <DatePicker
+                    android:id="@+id/datePicker"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:background="@drawable/input_shape"
-                    android:backgroundTint="#E9F1E7"
-                    android:paddingHorizontal="2dp"
-                    android:paddingVertical="16dp"
-                    android:textColorHint="@color/grey"
-                    android:inputType="date"
+                    android:calendarViewShown="false"
+                    android:datePickerMode="spinner"
+                    android:layout_margin="16dp"
                     />
-
 
             </LinearLayout>
 

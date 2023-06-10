@@ -6,15 +6,10 @@ import android.os.Handler
 import android.view.ContextThemeWrapper
 import android.view.MenuItem
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Switch
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
-import androidx.core.view.get
 import com.example.saveup.databinding.ActivityNovaDespesaBinding
 import models.Despesa
 import models.Financa
@@ -26,6 +21,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import service.FinancasService
 import java.io.IOException
+import java.time.LocalDate
 
 class NovaDespesa : AppCompatActivity() {
     private lateinit var binding: ActivityNovaDespesaBinding
@@ -34,11 +30,11 @@ class NovaDespesa : AppCompatActivity() {
     private val etDescricao: EditText by lazy { binding.descricao }
     private val etCategoria: Spinner by lazy { binding.spinnerCategoria }
     private val etValor: EditText by lazy { binding.valor }
-    private val etData : EditText by lazy { binding.data }
     private val btAdicionar : Button by lazy { binding.adicionar }
     private val switch: Switch by lazy { binding.switchButton }
     private val handler = Handler()
-
+    private var dataSelecionada = ""
+    private val datePicker by lazy { binding.datePicker }
     var isReceita : Boolean = false
 
 
@@ -55,6 +51,20 @@ class NovaDespesa : AppCompatActivity() {
             isReceita = isChecked
             layoutReceita()
         }
+
+        dataSelecionada = LocalDate.now().toString()
+
+        datePicker.init(datePicker.year, datePicker.month, datePicker.dayOfMonth) { view, year, monthOfYear, dayOfMonth ->
+            // Aqui você pode capturar a data selecionada e fazer o que precisar com ela
+
+            // Formate os números abaixo de 10 com zero à esquerda
+            val dayFormatted = String.format("%02d", dayOfMonth)
+            val monthFormatted = String.format("%02d", monthOfYear + 1)
+            val yearFormatted = String.format("%02d", year)
+
+            dataSelecionada = "$yearFormatted-$monthFormatted-$dayFormatted"
+        }
+
 
     }
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -125,7 +135,7 @@ class NovaDespesa : AppCompatActivity() {
     }
 
     private fun formatarData(): String {
-        val partes = etData.text.toString().split("/")
+        val partes = dataSelecionada.split("/")
         val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
         return dataFormatada
     }
@@ -147,16 +157,12 @@ class NovaDespesa : AppCompatActivity() {
             etValor.error = "Campo obrigatório"
             isChecked = false
         }
-        if (etData.text.toString().isNullOrBlank()) {
-           etData.error = "campo obrigatorio"
-            isChecked = false
-        }
         if(isChecked) {
             return FinancaCriacao(
                 etTitulo.text.toString(),
                 etDescricao.text.toString(),
                 etValor.text.toString().toDouble(),
-                formatarData(),
+                dataSelecionada,
                 etCategoria.selectedItem.toString()
             )
         }
@@ -199,7 +205,6 @@ class NovaDespesa : AppCompatActivity() {
         etTitulo.text.clear()
         etDescricao.text.clear()
         etValor.text.clear()
-        etData.text.clear()
     }
     private fun executarAcaoComDelay() {
         val delayMillis = 3000 // 2 segundos
