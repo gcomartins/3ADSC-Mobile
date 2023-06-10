@@ -55,6 +55,7 @@ class DashboardFragment : Fragment() {
             "Categoriazinha" to R.color.pink_dashboard,
             "Viagens" to R.color.blue_bold_dashboard,
             "Moradia" to R.color.orange_dashboard,
+
         )
 
         viewModel.despesasList.observe(viewLifecycleOwner){
@@ -172,7 +173,7 @@ class DespesaAdapter(
             val letra = itemView.findViewById<TextView>(R.id.tvLetra)
             val valor = itemView.findViewById<TextView>(R.id.tvValor)
 
-            letra.backgroundTintList = ColorStateList.valueOf(mapColors[despesa.categoria]!!)
+            letra.backgroundTintList = ColorStateList.valueOf(mapColors[despesa.categoria] ?: R.color.pink_dashboard)
 
             titulo.text = despesa.nome
             descricao.text = despesa.descricao
