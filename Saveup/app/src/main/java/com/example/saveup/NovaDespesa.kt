@@ -101,7 +101,6 @@ class NovaDespesa : AppCompatActivity() {
 
     }
     private fun cadastrarFinanca(view: View) {
-        USUARIO.id = 1
         var financa: FinancaCriacao? = getFinanca(view)
         if (financa != null) {
                 isDespesaValue(

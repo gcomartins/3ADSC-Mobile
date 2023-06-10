@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="com.example.saveup.DashboardFragment"
+        android:name="com.example.saveup.dashboard.DashboardFragment"
         android:label="fragment_objetivo"
         tools:layout="@layout/fragment_dashboard">
         <action

@@ -1,7 +1,6 @@
-package com.example.saveup
+package com.example.saveup.dashboard
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -9,12 +8,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.saveup.R
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.PieChart
 import com.github.mikephil.charting.data.PieData
@@ -22,18 +20,33 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
+import models.Despesa
+import java.util.Locale
 
 class DashboardFragment : Fragment() {
 
+    private val viewModel: DashboardViewModel by lazy {
+        DashboardViewModel()
+    }
+
     private lateinit var ourPieChart: PieChart
     private lateinit var recyclerView: RecyclerView
-    private lateinit var meuAdapter: CategoriAdapter
+    private lateinit var meuAdapter: DespesaAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
+
+        viewModel.getDespesasList()
+
+        viewModel.despesasList.observe(viewLifecycleOwner){
+            val dataList = it
+            meuAdapter = DespesaAdapter(ordenarDespesasPorData(dataList), requireContext())
+            recyclerView.adapter = meuAdapter
+        }
+
         recyclerView = view.findViewById(R.id.recyclerView)
         ourPieChart = view.findViewById(R.id.pieChartt)
 
@@ -105,13 +118,13 @@ class DashboardFragment : Fragment() {
 
         ourPieChart.invalidate()
 
-        val dataList = listOf(
-            Categoria("Teste", "A", "20.0", "testeeee"),
-            Categoria("Teste", "B", "20.0", "testeeee"),
-            Categoria("Teste", "C", "20.0", "testeeee"),
-        )
+//        val dataList = listOf(
+//            Categoria("Teste", "A", "20.0", "testeeee"),
+//            Categoria("Teste", "B", "20.0", "testeeee"),
+//            Categoria("Teste", "C", "20.0", "testeeee"),
+//        )
 
-        meuAdapter = CategoriAdapter(dataList, requireContext())
+        meuAdapter = DespesaAdapter(emptyList(), requireContext())
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = meuAdapter
@@ -119,38 +132,32 @@ class DashboardFragment : Fragment() {
         return view
     }
 
+    fun ordenarDespesasPorData(despesas: List<Despesa>): List<Despesa> {
+        return despesas.sortedByDescending { it.data }
+    }}
 
-}
-
-data class Categoria(
-    val titulo: String,
-    val Letra: String,
-    val valorCategoria: String,
-    val descricao: String,
-)
-
-class CategoriAdapter(
-    private val list: List<Categoria>,
+class DespesaAdapter(
+    private val list: List<Despesa>,
     private val context: Context
-) : RecyclerView.Adapter<CategoriAdapter.GraficoCategoriaViewHolder>() {
+) : RecyclerView.Adapter<DespesaAdapter.GraficoCategoriaViewHolder>() {
 
     inner class GraficoCategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         //FUNCAO QUE PEGA OS DADOS E TRANSFORMA NO GRAFICO DE OBJETIVO
-        fun bind(categoria: Categoria){
-            val titulo = itemView.findViewById<TextView>(R.id.txt_titulo)
-            val descricao = itemView.findViewById<TextView>(R.id.txt_descricao)
-            val letra = itemView.findViewById<TextView>(R.id.txt_letra)
-            val valorCategoria = itemView.findViewById<TextView>(R.id.txt_valor)
+        fun bind(despesa: Despesa){
+            val titulo = itemView.findViewById<TextView>(R.id.tvTitulo)
+            val descricao = itemView.findViewById<TextView>(R.id.tvDescricao)
+            val letra = itemView.findViewById<TextView>(R.id.tvLetra)
+            val valor = itemView.findViewById<TextView>(R.id.tvValor)
 
-            titulo.text = categoria.titulo
-            descricao.text = categoria.descricao
-            letra.text = categoria.Letra
-            valorCategoria.text = categoria.valorCategoria
+            titulo.text = despesa.nome
+            descricao.text = despesa.descricao
+            letra.text = despesa.nome[0].toString().uppercase(Locale.getDefault())
+            valor.text = "R$${despesa.valor}"
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GraficoCategoriaViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
+        val inflater = LayoutInflater.from(context)
         val view = inflater.inflate(R.layout.item_dashboard_categoria, parent, false)
         return GraficoCategoriaViewHolder(view)
     }
@@ -158,8 +165,8 @@ class CategoriAdapter(
     override fun getItemCount(): Int = list.size
 
     override fun onBindViewHolder(holder: GraficoCategoriaViewHolder, position: Int) {
-        val categoria = list[position]
+        val despesa = list[position]
 
-        holder.bind(categoria)
+        holder.bind(despesa)
     }
 }
