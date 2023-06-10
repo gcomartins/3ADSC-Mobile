@@ -15,6 +15,7 @@ import service.FinancasService
 import service.ObjetivoService
 import java.io.IOException
 import java.time.LocalDate
+import java.util.Calendar
 import java.util.Date
 
 class CriarObjetivoActivity : AppCompatActivity() {
@@ -25,9 +26,11 @@ class CriarObjetivoActivity : AppCompatActivity() {
     private val etTitulo by lazy { binding.editTextTitulo }
     private val etDescricao by lazy { binding.editTextDescricao }
     private val etValor by lazy { binding.editTextMetaValor }
-    private val etData by lazy { binding.editTextData }
+    private val datePicker by lazy { binding.datePicker }
     private val etCategoria by lazy { binding.spinnerCategoria }
     private val etValorAtual by lazy { binding.editTextValorAtual }
+
+    private var dataSelecionada = ""
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -35,12 +38,24 @@ class CriarObjetivoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        datePicker.init(datePicker.year, datePicker.month, datePicker.dayOfMonth) { view, year, monthOfYear, dayOfMonth ->
+            // Aqui você pode capturar a data selecionada e fazer o que precisar com ela
+
+            // Formate os números abaixo de 10 com zero à esquerda
+            val dayFormatted = String.format("%02d", dayOfMonth)
+            val monthFormatted = String.format("%02d", monthOfYear + 1)
+            val yearFormatted = String.format("%02d", year)
+
+            dataSelecionada = "$dayFormatted/$monthFormatted/$yearFormatted"
+        }
+
         binding.buttonCriarObjetivo.setOnClickListener {
             val nome = etTitulo.text.toString()
             val descricao = etDescricao.text.toString()
             val valor = etValor.text.toString().toDoubleOrNull()
             val categoria = etCategoria.selectedItem.toString()
             val valorAtual = etValorAtual.text.toString().toDoubleOrNull()
+
 
             if (valor != null && valorAtual != null) {
                 val novoObjetivo = NovoObjetivo(
@@ -55,6 +70,7 @@ class CriarObjetivoActivity : AppCompatActivity() {
                 )
 
                 criarObjetivo(novoObjetivo)
+                finish()
             } else {
                 Toast.makeText(this, "Valores inválidos", Toast.LENGTH_SHORT).show()
             }
@@ -63,7 +79,7 @@ class CriarObjetivoActivity : AppCompatActivity() {
     }
 
     private fun formatarData(): String {
-        val partes = etData.text.toString().split("/")
+        val partes = dataSelecionada.split("/")
         val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
         return dataFormatada
 

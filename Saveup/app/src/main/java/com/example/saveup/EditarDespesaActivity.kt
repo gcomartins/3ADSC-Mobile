@@ -161,6 +161,5 @@ class EditarDespesaActivity : AppCompatActivity() {
         val partes = dataSelecionada.split("/")
         val dataFormatada = "${partes[2]}-${partes[1]}-${partes[0]}"
         return dataFormatada
-
     }
 }
