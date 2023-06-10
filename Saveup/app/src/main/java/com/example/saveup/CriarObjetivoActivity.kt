@@ -38,6 +38,8 @@ class CriarObjetivoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        dataSelecionada = LocalDate.now().toString()
+
         datePicker.init(datePicker.year, datePicker.month, datePicker.dayOfMonth) { view, year, monthOfYear, dayOfMonth ->
             // Aqui você pode capturar a data selecionada e fazer o que precisar com ela
 
@@ -46,7 +48,7 @@ class CriarObjetivoActivity : AppCompatActivity() {
             val monthFormatted = String.format("%02d", monthOfYear + 1)
             val yearFormatted = String.format("%02d", year)
 
-            dataSelecionada = "$dayFormatted/$monthFormatted/$yearFormatted"
+            dataSelecionada = "$yearFormatted-$monthFormatted-$dayFormatted"
         }
 
         binding.buttonCriarObjetivo.setOnClickListener {
@@ -66,7 +68,7 @@ class CriarObjetivoActivity : AppCompatActivity() {
                     categoria = categoria,
                     valorAtual = valorAtual ?: 0.0,
                     fkUsuario = USUARIO.id!!,
-                    dataFinal = formatarData()
+                    dataFinal = dataSelecionada,
                 )
 
                 criarObjetivo(novoObjetivo)
