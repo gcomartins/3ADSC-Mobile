@@ -2,6 +2,7 @@ package com.example.saveup.dashboard
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
@@ -44,9 +45,21 @@ class DashboardFragment : Fragment() {
 
         viewModel.getDespesasList()
 
+        val mapColors = mapOf(
+            "Alimentação" to R.color.yellow_dahsboard,
+            "Educação" to R.color.pink_dashboard,
+            "Lazer" to R.color.blue_bold_dashboard,
+            "Moradia" to R.color.orange_dashboard,
+            "Transporte" to R.color.teal_200,
+            "Alimentos" to R.color.yellow_dahsboard,
+            "Categoriazinha" to R.color.pink_dashboard,
+            "Viagens" to R.color.blue_bold_dashboard,
+            "Moradia" to R.color.orange_dashboard,
+        )
+
         viewModel.despesasList.observe(viewLifecycleOwner){
             val dataList = it
-            meuAdapter = DespesaAdapter(ordenarDespesasPorData(dataList), requireContext())
+            meuAdapter = DespesaAdapter(ordenarDespesasPorData(dataList), requireContext(), mapColors)
             recyclerView.adapter = meuAdapter
         }
 
@@ -94,6 +107,7 @@ class DashboardFragment : Fragment() {
         colors.add(resources.getColor(R.color.blue_bold_dashboard))
         colors.add(resources.getColor(R.color.orange_dashboard))
         colors.add(resources.getColor(R.color.teal_200))
+
         viewModel.despesasGrafico.observe(viewLifecycleOwner) { mapResponse ->
             val entries = convertToPieEntries(mapResponse)
             val dataSet = PieDataSet(entries, "Categorias")
@@ -119,7 +133,7 @@ class DashboardFragment : Fragment() {
 
         ourPieChart.invalidate()
 
-        meuAdapter = DespesaAdapter(emptyList(), requireContext())
+        meuAdapter = DespesaAdapter(emptyList(), requireContext(), mapColors)
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(requireContext())
         recyclerView.layoutManager = linearLayoutManager
         recyclerView.adapter = meuAdapter
@@ -140,11 +154,13 @@ class DashboardFragment : Fragment() {
 
     fun ordenarDespesasPorData(despesas: List<Despesa>): List<Despesa> {
         return despesas.sortedByDescending { it.data }
-    }}
+    }
+}
 
 class DespesaAdapter(
     private val list: List<Despesa>,
-    private val context: Context
+    private val context: Context,
+    private val mapColors: Map<String, Int> = mapOf()
 ) : RecyclerView.Adapter<DespesaAdapter.GraficoCategoriaViewHolder>() {
 
     inner class GraficoCategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -155,6 +171,8 @@ class DespesaAdapter(
             val descricao = itemView.findViewById<TextView>(R.id.tvDescricao)
             val letra = itemView.findViewById<TextView>(R.id.tvLetra)
             val valor = itemView.findViewById<TextView>(R.id.tvValor)
+
+            letra.backgroundTintList = ColorStateList.valueOf(mapColors[despesa.categoria]!!)
 
             titulo.text = despesa.nome
             descricao.text = despesa.descricao
