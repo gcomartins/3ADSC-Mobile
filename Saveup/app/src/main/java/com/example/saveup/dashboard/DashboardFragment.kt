@@ -198,6 +198,7 @@ class DespesaAdapter(
                     putExtra("valor", despesa.valor)
                     putExtra("data", despesa.data)
                     putExtra("id", despesa.codigo)
+                    putExtra("categoria", despesa.categoria)
                 }
                 context.startActivity(intent)
             }

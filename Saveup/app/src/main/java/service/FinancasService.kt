@@ -3,8 +3,10 @@ package service
 import models.Despesa
 import models.Receita
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
  interface FinancasService {
@@ -32,4 +34,17 @@ import retrofit2.http.Path
          @Path("id") id: Int,
          @Body receita: Receita
      ): retrofit2.Call<Receita>
+
+     @DELETE("/despesas/{idUsuario}/{idDespesa}")
+     fun deletaDespesa(
+         @Path("idUsuario") idUsuario: Int,
+         @Path("idDespesa") idDespesa: Int
+     ): retrofit2.Call<Despesa>
+
+     @PUT("/despesas/{idUsuario}/{idDespesa}")
+     fun atualizaDespesa(
+         @Path("idUsuario") idUsuario: Int,
+         @Path("idDespesa") idDespesa: Int,
+         @Body despesa: Despesa
+     ): retrofit2.Call<Despesa>
  }
