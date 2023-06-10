@@ -8,11 +8,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import com.example.saveup.databinding.ActivityNovaDespesaBinding
 import models.Despesa
 import models.Financa
@@ -30,7 +32,7 @@ class NovaDespesa : AppCompatActivity() {
     private val retrofit = Rest.getInstance()
     private val etTitulo: EditText by lazy { binding.titulo }
     private val etDescricao: EditText by lazy { binding.descricao }
-    private val etCategoria: EditText by lazy { binding.categoria }
+    private val etCategoria: Spinner by lazy { binding.spinnerCategoria }
     private val etValor: EditText by lazy { binding.valor }
     private val etData : EditText by lazy { binding.data }
     private val btAdicionar : Button by lazy { binding.adicionar }
@@ -138,8 +140,7 @@ class NovaDespesa : AppCompatActivity() {
             etDescricao.error = "Campo obrigatório"
             isChecked = false
         }
-        if (etCategoria.text.isNullOrBlank()) {
-            etCategoria.error = "Campo obrigatório"
+        if (etCategoria.selectedItem.toString().isNullOrBlank()) {
             isChecked = false
         }
         if ( etValor.text.isNullOrBlank()) {
@@ -156,7 +157,7 @@ class NovaDespesa : AppCompatActivity() {
                 etDescricao.text.toString(),
                 etValor.text.toString().toDouble(),
                 formatarData(),
-                etCategoria.text.toString(),
+                etCategoria.selectedItem.toString()
             )
         }
         return null
@@ -171,7 +172,7 @@ class NovaDespesa : AppCompatActivity() {
                     formatarData(),
                     financa.categoria,
                     USUARIO.id!!,
-                    1
+                    frequencia = 1
                 )
             )
         }
@@ -183,17 +184,18 @@ class NovaDespesa : AppCompatActivity() {
                     financa.valor,
                     formatarData(),
                     financa.categoria,
-                    1,
-                    USUARIO.id!!
+                   1,
+                    USUARIO.id!!,
                 )
             )
         }
         executarAcaoComDelay()
     }
+
+
     private fun limparEditTexts() {
         etTitulo.text.clear()
         etDescricao.text.clear()
-        etCategoria.text.clear()
         etValor.text.clear()
         etData.text.clear()
     }
