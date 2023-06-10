@@ -131,31 +131,23 @@ class NovaDespesa : AppCompatActivity() {
     fun checkAll(): FinancaCriacao?{
         var isChecked: Boolean = true
         if (etTitulo.text.isNullOrBlank()) {
-            Toast.makeText(
-                baseContext, "Preencha o valor de Titulo",
-                Toast.LENGTH_SHORT
-            ).show()
+            etTitulo.error = "Campo obrigatório"
             isChecked = false
         }
         if (etDescricao.text.isNullOrBlank()) {
-            Toast.makeText(
-                baseContext, "Preencha o valor de Descrição",
-                Toast.LENGTH_SHORT
-            ).show()
+            etDescricao.error = "Campo obrigatório"
+            isChecked = false
+        }
+        if (etCategoria.text.isNullOrBlank()) {
+            etCategoria.error = "Campo obrigatório"
             isChecked = false
         }
         if ( etValor.text.isNullOrBlank()) {
-            Toast.makeText(
-                baseContext, "Insira o valor",
-                Toast.LENGTH_SHORT
-            ).show()
+            etValor.error = "Campo obrigatório"
             isChecked = false
         }
         if (etData.text.toString().isNullOrBlank()) {
-            Toast.makeText(
-                baseContext, "Insira a data",
-                Toast.LENGTH_SHORT
-            ).show()
+           etData.error = "campo obrigatorio"
             isChecked = false
         }
         if(isChecked) {
