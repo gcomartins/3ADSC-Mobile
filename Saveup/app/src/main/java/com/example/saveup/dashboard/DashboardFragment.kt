@@ -58,7 +58,7 @@ class DashboardFragment : Fragment() {
         ourPieChart.setBackgroundColor(color)
 
         ourPieChart.setUsePercentValues(true)
-        ourPieChart.getDescription().setEnabled(false)
+        ourPieChart.getDescription().setEnabled(true)
         ourPieChart.setExtraOffsets(5f, 10f, 5f, 5f)
 
         ourPieChart.setDragDecelerationFrictionCoef(0.95f)
@@ -76,30 +76,17 @@ class DashboardFragment : Fragment() {
 
         ourPieChart.setRotationAngle(0f)
 
-        ourPieChart.setRotationEnabled(true)
+        ourPieChart.setRotationEnabled(false)
         ourPieChart.setHighlightPerTapEnabled(true)
 
         ourPieChart.animateY(1400, Easing.EaseInOutQuad)
 
-        ourPieChart.legend.isEnabled = false
+        ourPieChart.legend.isEnabled = true
         ourPieChart.setEntryLabelColor(Color.WHITE)
         ourPieChart.setEntryLabelTextSize(12f)
         ourPieChart.setHoleRadius(1f)
         ourPieChart.setTransparentCircleRadius(1f)
-
-        val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(25f))
-        entries.add(PieEntry(30f))
-        entries.add(PieEntry(20f))
-        entries.add(PieEntry(30f))
-
-        val dataSet = PieDataSet(entries, "teste")
-        dataSet.setDrawIcons(false)
-
-        dataSet.sliceSpace = 3f
-        dataSet.iconsOffset = MPPointF(0f, 40f)
-        dataSet.selectionShift = 5f
-        dataSet.sliceSpace = 2f
+        ourPieChart.contentDescription = "Valores em %"
 
         val colors: ArrayList<Int> = ArrayList()
         colors.add(resources.getColor(R.color.yellow_dahsboard))
@@ -107,25 +94,30 @@ class DashboardFragment : Fragment() {
         colors.add(resources.getColor(R.color.blue_bold_dashboard))
         colors.add(resources.getColor(R.color.orange_dashboard))
         colors.add(resources.getColor(R.color.teal_200))
+        viewModel.despesasGrafico.observe(viewLifecycleOwner) { mapResponse ->
+            val entries = convertToPieEntries(mapResponse)
+            val dataSet = PieDataSet(entries, "Categorias")
+            dataSet.setDrawIcons(true)
+            dataSet.sliceSpace = 0f
+            dataSet.iconsOffset = MPPointF(0f, 40f)
+            dataSet.selectionShift = 5f
 
-        dataSet.colors = colors
 
-        val data = PieData(dataSet)
-        data.setValueFormatter(PercentFormatter())
-        data.setValueTextSize(15f)
-        data.setValueTypeface(Typeface.DEFAULT_BOLD)
-        data.setValueTextColor(Color.WHITE)
-        ourPieChart.setData(data)
+            dataSet.colors = colors
+
+            val data = PieData(dataSet)
+            data.setValueFormatter(PercentFormatter())
+            data.setValueTextSize(15f)
+            data.setValueTypeface(Typeface.DEFAULT_BOLD)
+            data.setValueTextColor(Color.WHITE)
+
+            ourPieChart.data = data
+            ourPieChart.invalidate()
+        }
 
         ourPieChart.highlightValues(null)
 
         ourPieChart.invalidate()
-
-//        val dataList = listOf(
-//            Categoria("Teste", "A", "20.0", "testeeee"),
-//            Categoria("Teste", "B", "20.0", "testeeee"),
-//            Categoria("Teste", "C", "20.0", "testeeee"),
-//        )
 
         meuAdapter = DespesaAdapter(emptyList(), requireContext())
         val linearLayoutManager: LinearLayoutManager = LinearLayoutManager(requireContext())
@@ -133,6 +125,17 @@ class DashboardFragment : Fragment() {
         recyclerView.adapter = meuAdapter
 
         return view
+    }
+
+    fun convertToPieEntries(map: MutableMap<String, Double>): ArrayList<PieEntry> {
+        val pieEntries = ArrayList<PieEntry>()
+
+        for ((categoria, valor) in map) {
+            val pieEntry = PieEntry(valor.toFloat())
+            pieEntries.add(pieEntry)
+        }
+
+        return pieEntries
     }
 
     fun ordenarDespesasPorData(despesas: List<Despesa>): List<Despesa> {

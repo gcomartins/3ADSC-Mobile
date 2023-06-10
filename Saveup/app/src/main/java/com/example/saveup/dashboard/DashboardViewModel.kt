@@ -16,12 +16,28 @@ class DashboardViewModel: ViewModel() {
     private val financasService = retrofit.create(FinancasService::class.java)
 
     val despesasList: MutableLiveData<List<Despesa>> = MutableLiveData(emptyList())
+    val despesasGrafico: MutableLiveData<MutableMap<String, Double>> = MutableLiveData( mutableMapOf())
 
     fun getDespesasList(){
         financasService.getAllDespesasById(USUARIO.id!!).enqueue(object: Callback<List<Despesa>> {
             override fun onResponse(call: Call<List<Despesa>>, response: Response<List<Despesa>>) {
                 if(response.isSuccessful){
-                    despesasList.value = response.body()
+                    val responseList: List<Despesa> = response.body() ?: emptyList()
+                    despesasList.value = responseList
+                    val mapResponse: MutableMap<String, Double> = mutableMapOf()
+                    for (despesa in responseList) {
+                        val categoria = despesa.categoria
+                        val valor = despesa.valor
+
+
+                        if (mapResponse.containsKey(categoria)) {
+                            val valorExistente = mapResponse[categoria] ?: 0.0
+                            mapResponse[categoria] = valorExistente + valor
+                        } else {
+                            mapResponse[categoria] = valor
+                        }
+                    }
+                    despesasGrafico.value = mapResponse
                 }
             }
 
