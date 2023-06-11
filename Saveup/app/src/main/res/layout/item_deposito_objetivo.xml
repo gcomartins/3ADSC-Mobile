@@ -70,9 +70,10 @@
         android:backgroundTint = "@color/primary"
         />
     <Button
+        android:id="@+id/btnEditarObjetivo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Adicionar Objetivos"
+        android:text="Editar Objetivo"
         android:textColor="@color/primary"
         android:layout_margin="5dp"
         android:backgroundTint="@color/white"
@@ -82,10 +83,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Excluir Objetivos"
-        android:textColor="@color/primary"
+        android:textColor="@color/white"
         android:layout_margin="5dp"
         android:textSize="12dp"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="@color/red"
         />
 
 </LinearLayout>

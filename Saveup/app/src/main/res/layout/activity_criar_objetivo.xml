@@ -7,11 +7,26 @@
     android:paddingHorizontal="16dp"
     >
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/buttonCriarObjetivo">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
     <TextView
         android:id="@+id/tituloPagina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Novo Objetivo"
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -25,13 +40,22 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tituloPagina"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
+        android:layout_marginStart="1dp"/>
 
     <EditText
         android:id="@+id/editTextTitulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Digite o título"
+        android:backgroundTint="#E9F1E7"
+        android:background="@drawable/input_shape"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="7dp"
+        android:textColorHint="@color/grey"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,6 +66,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Descrição"
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
+        android:layout_marginStart="1dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitulo"
@@ -52,6 +79,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Digite a descrição"
+        android:backgroundTint="#E9F1E7"
+        android:background="@drawable/input_shape"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="7dp"
+        android:textColorHint="@color/grey"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,6 +94,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Valor Atual"
+
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
+        android:layout_marginStart="1dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextDescricao"
@@ -72,6 +108,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Digite o valor atual"
+        android:backgroundTint="#E9F1E7"
+        android:background="@drawable/input_shape"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="7dp"
+        android:textColorHint="@color/grey"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,6 +123,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Meta de Valor"
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
+        android:layout_marginStart="1dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextValorAtual"
@@ -92,6 +136,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="Digite a meta de valor"
+        android:backgroundTint="#E9F1E7"
+        android:background="@drawable/input_shape"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="7dp"
+        android:textColorHint="@color/grey"
         android:inputType="numberDecimal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -102,6 +151,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Categoria"
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
+        android:layout_marginStart="1dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextMetaValor"
@@ -113,6 +165,11 @@
         android:layout_height="wrap_content"
         android:entries="@array/categorias_principais"
         android:prompt="@string/categoria"
+        android:backgroundTint="#E9F1E7"
+        android:background="@drawable/input_shape"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="7dp"
+        android:textColorHint="@color/grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewCategoria" />
@@ -122,6 +179,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Data"
+        android:textColor="@color/primary"
+        android:textSize ="20sp"
+        android:layout_marginStart="1dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerCategoria"
@@ -133,13 +193,20 @@
         android:layout_height="wrap_content"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
+        android:backgroundTint="#E9F1E7"
+        android:background="@drawable/input_shape"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="7dp"
+        android:textColorHint="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewData"
         android:layout_margin="16dp"
         />
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+    </ScrollView>
 
     <!-- Botão para criar o objetivo -->
     <Button

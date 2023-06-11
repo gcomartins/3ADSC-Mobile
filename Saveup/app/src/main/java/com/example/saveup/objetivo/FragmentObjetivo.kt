@@ -112,7 +112,7 @@ class ObjetivoAdapter(
 
             val btExcluir = itemView.findViewById<Button>(R.id.btnExcluirObjetivo)
             btExcluir.setOnClickListener{
-                viewModel.deleteObjetivoByIdObjetivo(objetivo.id)
+                viewModel.deleteObjetivoByIdObjetivo(objetivo.fkUsuario, objetivo.id)
             }
         }
     }

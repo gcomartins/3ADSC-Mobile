@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityEditarObjetivo"
+            android:exported="false" />
+        <activity
             android:name=".EditarDespesaActivity"
             android:exported="false" />
         <activity

@@ -31,6 +31,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/primary"
                 />
 
             <EditText
@@ -38,6 +39,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Nome"
+                android:backgroundTint="#E9F1E7"
+                android:background="@drawable/input_shape"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="7dp"
+                android:textColorHint="@color/grey"
+                android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
@@ -55,6 +62,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toBottomOf="@id/editNome"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/primary"
                 />
 
             <EditText
@@ -62,6 +70,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Descrição"
+                android:backgroundTint="#E9F1E7"
+                android:background="@drawable/input_shape"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="7dp"
+                android:textColorHint="@color/grey"
+                android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvDescricao"
@@ -79,6 +93,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toBottomOf="@id/editDescricao"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/primary"
                 />
 
             <EditText
@@ -86,6 +101,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:hint="Valor"
+                android:backgroundTint="#E9F1E7"
+                android:background="@drawable/input_shape"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="7dp"
+                android:textColorHint="@color/grey"
+                android:inputType="text"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvValor"
@@ -103,6 +124,7 @@
                 android:text="Categoria"
                 android:layout_marginTop="16dp"
                 app:layout_constraintTop_toBottomOf="@+id/editValor"
+                android:textColor="@color/primary"
                 />
 
             <Spinner
@@ -115,6 +137,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                android:backgroundTint="#E9F1E7"
+                android:background="@drawable/input_shape"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="7dp"
+                android:textColorHint="@color/grey"
+                android:inputType="text"
                 app:layout_constraintTop_toBottomOf="@+id/tvCategoria"
                 />
 
@@ -129,6 +157,7 @@
                 android:layout_marginStart="16dp"
                 app:layout_constraintTop_toBottomOf="@id/spinnerCategoria"
                 android:layout_marginTop="16dp"
+                android:textColor="@color/primary"
                 />
 
             <DatePicker
@@ -141,6 +170,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewData"
                 android:layout_margin="16dp"
+                android:backgroundTint="#E9F1E7"
+                android:background="@drawable/input_shape"
+                android:paddingVertical="16dp"
+                android:paddingHorizontal="7dp"
+                android:textColorHint="@color/grey"
+                android:inputType="text"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
