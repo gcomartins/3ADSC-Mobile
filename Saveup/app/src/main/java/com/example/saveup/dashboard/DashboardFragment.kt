@@ -25,6 +25,7 @@ import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.github.mikephil.charting.utils.MPPointF
 import models.Despesa
+import java.text.DecimalFormat
 import java.util.Locale
 
 class DashboardFragment : Fragment() {
@@ -190,7 +191,9 @@ class DespesaAdapter(
             titulo.text = despesa.nome
             descricao.text = despesa.categoria
             letra.text = despesa.nome[0].toString().uppercase(Locale.getDefault())
-            valor.text = "R$${despesa.valor}"
+            val decimalFormat = DecimalFormat("0.00")
+            val formattedValue = decimalFormat.format(despesa.valor)
+            valor.text = "R$ $formattedValue"
             data.text = despesa.data.replace("-", "/").split("/").reversed().joinToString("/")
 
             item.setOnClickListener{
