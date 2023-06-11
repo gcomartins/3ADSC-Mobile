@@ -1,10 +1,7 @@
 package com.example.saveup.objetivo
 
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.saveup.USUARIO
-import models.Despesa
 import models.Objetivo
 import rest.Rest
 import retrofit2.Call

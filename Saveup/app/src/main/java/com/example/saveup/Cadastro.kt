@@ -164,7 +164,7 @@ class Cadastro : AppCompatActivity() {
 
     }
     fun cadastrarApi(){
-        val usuario: UsuarioCadastro  = UsuarioCadastro(USUARIO.id!!,email,nome,senha,formatarIdade(dataDeNascimento))
+        val usuario: UsuarioCadastro  = UsuarioCadastro(null, email,nome,senha,formatarIdade(dataDeNascimento))
         retrofit
             .create(UsuarioService::class.java)
             .cadastrar(usuario).enqueue(object : Callback<UsuarioCadastro> {

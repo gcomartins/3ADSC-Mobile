@@ -16,9 +16,9 @@ import service.FinancasService
 class DashboardResumoViewModel: ViewModel() {
     private val retrofit = Rest.getInstance()
 
-    val allDespesas: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
-    val allReceitas: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
-    val saldoPorMes: MutableLiveData<List<ValorGrafico>> = MutableLiveData()
+    val allDespesas: MutableLiveData<List<ValorGrafico>> = MutableLiveData(emptyList())
+    val allReceitas: MutableLiveData<List<ValorGrafico>> = MutableLiveData(emptyList())
+    val saldoPorMes: MutableLiveData<List<ValorGrafico>> = MutableLiveData(emptyList())
 
     fun getAllDespesasByIdUsuario(idUsuario: Int) {
         val despesaService = retrofit.create(FinancasService::class.java)

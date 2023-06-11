@@ -50,14 +50,14 @@ class FragmentObjetivo : Fragment() {
         recyclerView.adapter = meuAdapter
 
         viewModel.allObjetivos.observe(viewLifecycleOwner) { objetivos ->
-            meuAdapter.list = objetivos // Atualize os dados do adaptador com os objetivos recebidos
-            meuAdapter.notifyDataSetChanged() // Notifique o adaptador sobre a mudança nos dados
+            if(objetivos != null){
+                meuAdapter.list = objetivos // Atualize os dados do adaptador com os objetivos recebidos
+                meuAdapter.notifyDataSetChanged() // Notifique o adaptador sobre a mudança nos dados
+            }
         }
 
 
         // Exemplo de dados
-        // E NECESSARIO REVER O LAYOUT POIS NAO ESTA DINAMICO
-        // TA COM A QUANTIDADE DE GRAFICOS MOCADA
 //        val dataList = listOf(
 //            Objetivo("Viagem", "Viagem para o exterior", 10000.0, 5000.0),
 //            Objetivo("Carro", "Carro novo", 50000.0, 10000.0),
@@ -112,7 +112,7 @@ class ObjetivoAdapter(
 
             val btExcluir = itemView.findViewById<Button>(R.id.btnExcluirObjetivo)
             btExcluir.setOnClickListener{
-                viewModel.deleteObjetivoByIdObjetivo(objetivo.fkUsuario, objetivo.id)
+                viewModel.deleteObjetivoByIdObjetivo(objetivo.id)
             }
         }
     }
