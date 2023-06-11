@@ -183,6 +183,7 @@ class DespesaAdapter(
             val descricao = itemView.findViewById<TextView>(R.id.tvDescricao)
             val letra = itemView.findViewById<TextView>(R.id.tvLetra)
             val valor = itemView.findViewById<TextView>(R.id.tvValor)
+            val data = itemView.findViewById<TextView>(R.id.tvData)
 
             letra.backgroundTintList = ColorStateList.valueOf(mapColors[despesa.categoria] ?: R.color.pink_dashboard)
 
@@ -190,6 +191,7 @@ class DespesaAdapter(
             descricao.text = despesa.categoria
             letra.text = despesa.nome[0].toString().uppercase(Locale.getDefault())
             valor.text = "R$${despesa.valor}"
+            data.text = despesa.data.replace("-", "/").split("/").reversed().joinToString("/")
 
             item.setOnClickListener{
                 val intent = Intent(context, EditarDespesaActivity::class.java).apply {
