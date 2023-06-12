@@ -13,6 +13,7 @@ import android.widget.TextView
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.saveup.ActivityEditarObjetivo
 import com.example.saveup.ObjetivoExpandidoActivity
 import com.example.saveup.R
 import com.example.saveup.USUARIO
@@ -108,6 +109,16 @@ class ObjetivoAdapter(
                     putExtra("progresso", progresso)
                 }
                 context.startActivity(objetivoExpandido)
+            }
+
+            val btnEditarObjetivo = itemView.findViewById<Button>(R.id.btnEditarObjetivo)
+            btnEditarObjetivo.setOnClickListener {
+                val editarObjetivo = Intent(context, ActivityEditarObjetivo::class.java).apply {
+                    putExtra("titulo", objetivo.nome)
+                    putExtra("descricao", objetivo.descricao)
+                    putExtra("valorAtual", objetivo.valorAtual)
+                }
+                context.startActivity(editarObjetivo)
             }
 
             val btExcluir = itemView.findViewById<Button>(R.id.btnExcluirObjetivo)

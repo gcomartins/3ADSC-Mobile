@@ -11,3 +11,11 @@ data class Objetivo(
     val dataFinal: String,
     val fkUsuario: Int
 )
+
+data class ObjetivoEditado(
+    val id : Int,
+    val nome: String,
+    val descricao: String,
+    val valor: Double,
+    val fkUsuario: Int
+)
